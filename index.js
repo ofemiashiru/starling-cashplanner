@@ -7,10 +7,21 @@ const session = require('express-session')
 const path = require('path');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2');
+
+const crypto = require('crypto');
+let nonce = crypto.randomBytes(16).toString('base64');
+
 //Make the app use express
 const app = express();
 
-app.use(session({secret:'cats'}));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+    // cookie: {maxAge: 1200000} //regulates how long the session lasts for in Milliseconds
+  }));
+
+
 app.use(passport.initialize());
 app.use(passport.session())
 //Set port to default port based on project server or 4000
@@ -32,12 +43,13 @@ passport.use(new OAuth2Strategy({
     tokenURL: process.env.TOKEN_URL
   },
   function(accessToken, refreshToken, profile, cb) {
-    return cb(null, profile);
+    return cb(null, profile, accessToken);
   }
 ));
 
 passport.serializeUser((user, done)=>{
     done(null, user);
+    console.log(user)
 });
 
 passport.deserializeUser((user, done)=>{
@@ -59,42 +71,35 @@ app.route('/')
 
 
 app.route('/auth')
-.get(passport.authenticate('oauth2', {scope:['account:read','balance:read','transaction:read']}))
-
-
-// app.route('/auth/callback')
-// .get(passport.authenticate('oauth2', 
-// {
-//     successRedirect: '/dashboard', 
-//     failureRedirect: '/auth/failure' 
-// }))
+.get(passport.authenticate('oauth2', {scope:['account:read','balance:read','transaction:read'], state:nonce}))
 
 
 app.route('/auth/callback')
-.get(
-  passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
-  function(req, res) {
+.get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
+function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/dashboard');
-  });
+});
+
 
 app.route('/auth/failure')
 .get((req, res) => {
     res.send('<h1>Something went wrong</h1>')
-})
+});
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
     res.send('Hello');
 
-})
+});
+
 
 app.route('/logout')
 .get((req,res)=>{
     req.logout();
     req.session.destroy();
     res.send('Goodbye');
-})
+});
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
 app.listen(port, () => {
