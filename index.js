@@ -62,25 +62,34 @@ app.route('/auth')
 .get(passport.authenticate('oauth2', {scope:['account:read','balance:read','transaction:read']}))
 
 
-app.route('/auth/callback')
-.get(passport.authenticate('oauth2', 
-{
-    successRedirect: '/dashboard', 
-    failureRedirect: '/auth/failure' 
-}))
+// app.route('/auth/callback')
+// .get(passport.authenticate('oauth2', 
+// {
+//     successRedirect: '/dashboard', 
+//     failureRedirect: '/auth/failure' 
+// }))
 
-app.route('auth/failure')
-.get((req, res)=>{
+
+app.route('/auth/callback')
+.get(
+  passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/dashboard');
+  });
+
+app.route('/auth/failure')
+.get((req, res) => {
     res.send('<h1>Something went wrong</h1>')
 })
 
 app.route('/dashboard')
-.get(isLoggedin,(req, res)=>{
+.get(isLoggedin,(req, res) => {
     res.send('Hello');
 
 })
 
-app.route('logout')
+app.route('/logout')
 .get((req,res)=>{
     req.logout();
     req.session.destroy();
