@@ -25,7 +25,7 @@ function isLoggedin(req, res, next){
 
 
 passport.use(new OAuth2Strategy({
-    authorizationURL: process.env.OAUTH_API,
+    authorizationURL: process.env.SANDBOX_API,
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: process.env.OAUTH_REDIRECT_URI,
@@ -59,7 +59,7 @@ app.route('/')
 
 
 app.route('/auth')
-.get(passport.authenticate('oauth2', {scope:['account:read']}))
+.get(passport.authenticate('oauth2', {scope:['account:read','balance:read','transaction:read']}))
 
 
 app.route('/auth/callback')
