@@ -26,10 +26,10 @@ function isLoggedin(req, res, next){
 
 passport.use(new OAuth2Strategy({
     authorizationURL: process.env.OAUTH_API,
-    tokenURL: process.env.PRODUCTION_API,
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: process.env.OAUTH_REDIRECT_URI
+    callbackURL: process.env.OAUTH_REDIRECT_URI,
+    tokenURL: process.env.TOKEN_URL
   },
   function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
@@ -57,6 +57,7 @@ app.route('/')
     `)
 })
 
+
 app.route('/auth')
 .get(passport.authenticate('oauth2', {scope:['account:read']}))
 
@@ -75,7 +76,15 @@ app.route('auth/failure')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res)=>{
-    res.send('Hello')
+    res.send('Hello');
+
+})
+
+app.route('logout')
+.get((req,res)=>{
+    req.logout();
+    req.session.destroy();
+    res.send('Goodbye');
 })
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
