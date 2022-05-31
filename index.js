@@ -51,12 +51,14 @@ app.route('/')
 app.route('/auth')
 .get(passport.authenticate('oauth2', {scope: ['account']}))
 
-app.get('/auth/callback',
-  passport.authenticate('oauth2', { failureRedirect: '/' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/dashboard');
-  });
+
+app.route('/auth/callback')
+.get(passport.authenticate('oauth2', { failureRedirect: '/' }),
+    function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/dashboard');
+    });
+
 
 app.route('/dashboard')
 .get((req, res)=>{
