@@ -42,8 +42,7 @@ passport.use(new OAuth2Strategy({
     tokenURL: process.env.TOKEN_URL,
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: process.env.OAUTH_REDIRECT_URI,
-    grantType: 'authorization_code' 
+    callbackURL: process.env.OAUTH_REDIRECT_URI 
   },
   function(accessToken, refreshToken, params, profile, cb) {
     return cb(null, params); //Params from Starling Website
