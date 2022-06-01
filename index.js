@@ -100,10 +100,7 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    fetch(`/api/v2/accounts/${req.user.accountUid}/balance`)
-    .then((data) => {
-        res.json({x:data})
-      })
+    console.log(res.user)
     res.send(
         `
         <h1>Hello</h1>
