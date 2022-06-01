@@ -82,11 +82,6 @@ function(req, res) {
     res.redirect('/dashboard');
 });
 
-// app.route('/auth/callback/:code&:state')
-// .get((req,res)=>{
-//     console.log("reached")
-// })
-
 
 app.route('/auth/failure')
 .get((req, res) => {
@@ -95,7 +90,12 @@ app.route('/auth/failure')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    res.send('Hello');
+    res.send(
+        `
+        <h1>Hello</h1>
+        <a href="/logout">Log Out</a>
+        `
+    );
 
 });
 
