@@ -109,7 +109,7 @@ app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
     const userInfo = req.user
 
-    axios.get('https://api-sandbox.starlingbank.com/api/v2/account-holder', {
+    axios.get('https://api-sandbox.starlingbank.com/api/v2/accounts', {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
@@ -117,7 +117,7 @@ app.route('/dashboard')
         }
     })
     .then((res) => {
-        console.log(res)
+        console.log(res.data)
     })
     .catch((error) => {
         console.error(error)
