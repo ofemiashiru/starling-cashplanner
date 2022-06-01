@@ -90,7 +90,7 @@ app.route('/auth/failure')
 
 
 app.route('/auth/logout')
-.get(isLoggedin,(req,res) => {
+.get((req,res) => {
     req.logout();
     req.session.destroy();
     res.redirect('/')
@@ -99,15 +99,16 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    console.log(req)
     res.send(
         `
         <h1>Hello</h1>
-        <a href="/logout">Log Out</a>
+        <a href="/auth/logout">Log Out</a>
+        <p>${req.accountUid}</p>
         `
     );
 
 });
+
 
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
