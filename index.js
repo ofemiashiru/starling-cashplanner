@@ -90,7 +90,6 @@ function(req, res) {
 
 
 
-
 app.route('/auth/failure')
 .get((req, res) => {
     res.send('<h1>Something went wrong</h1>')
@@ -102,7 +101,7 @@ app.route('/auth/logout')
 
     console.log(req);
     // req.logout();
-    // req.session.destroy();
+    req.session.destroy();
     // res.redirect('/')
 });
 
