@@ -36,8 +36,8 @@ function isLoggedin(req, res, next){
     req.user ?  next(): res.redirect('/')
 }
 
-function isLoggedOut(req, res, next){
-    req.user ?  next(): null
+function isLoggedOut(req, res){
+    req.user ? res.redirect('/dashboard'): null
 }
 
 passport.use(new OAuth2Strategy({
