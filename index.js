@@ -108,6 +108,11 @@ app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
     const userInfo = req.user
 
+    let title;
+    let firstName;
+    let lastName;
+    let email;
+
     //Get AccountHolderUiD
     axios.get('https://api-sandbox.starlingbank.com/api/v2/account-holder', 
     {
@@ -137,23 +142,23 @@ app.route('/dashboard')
     })
     .then((response) => 
     {
-       const title = response.data.title 
-       const firstName = response.data.firstName 
-       const lastName = response.data.lastName
-       const email = response.data.email
-       
-       res.send(
-        `
-        <h1>Hello ${title} ${firstName} ${lastName}</h1>
-        <a href="/auth/logout">Log Out</a>
-        `
-        );
+       title = response.data.title 
+       firstName = response.data.firstName 
+       lastName = response.data.lastName
+       email = response.data.email
        
     })
     .catch((error) => 
     {
         console.error(error)
     })
+
+    res.send(
+        `
+        <h1>Hello ${title} ${firstName} ${lastName}</h1>
+        <a href="/auth/logout">Log Out</a>
+        `
+    );
 
   
 });
