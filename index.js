@@ -23,6 +23,7 @@ app.use(session({
     // cookie: {maxAge: 1200000} //regulates how long the session lasts for in Milliseconds
   }));
 
+  app.use(express.urlencoded({ extended: true }));
 
 app.use(passport.initialize());
 app.use(passport.session())
@@ -76,14 +77,22 @@ app.route('/auth')
 .get(passport.authenticate('oauth2', {scope:[], state:nonce}))
 
 
-app.route('/auth/callback')
-.get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
+// app.route('/auth/callback')
+// .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
-function(req, res) {
-    console.log(req)
-    // Successful authentication, redirect home.
-    // res.redirect('/dashboard');
-});
+// function(req, res) {
+//     console.log(req)
+//     // Successful authentication, redirect home.
+//     // res.redirect('/dashboard');
+// });
+
+app.route('/auth/callback')
+.get((req, res)=>{
+
+    console.log(req.body)
+
+})
+
 
 
 app.route('/auth/failure')
