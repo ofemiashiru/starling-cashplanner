@@ -42,7 +42,8 @@ passport.use(new OAuth2Strategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: process.env.OAUTH_REDIRECT_URI,
-    tokenURL: process.env.TOKEN_URL 
+    tokenURL: process.env.TOKEN_URL,
+    grantType: 'authorization_code' 
   },
   function(accessToken, refreshToken, profile, cb) {
     const response = 
