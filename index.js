@@ -76,15 +76,13 @@ app.route('/auth')
 
 
 app.route('/auth/callback')
-.get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),(req, res)=>{
+.get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
+
+function(req, res) {
     console.log(req.body)
     // Successful authentication, redirect home.
     res.redirect('/dashboard');
-})
-
-// function(req, res) {
-    
-// });
+});
 
 
 app.route('/auth/failure')
@@ -105,11 +103,12 @@ app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
     
     res.send(
-        `
-        <h1>Hello</h1>
-        <p>${req}</p>
-        <a href="/auth/logout">Log Out</a>
-        `
+        req
+        // `
+        // <h1>Hello</h1>
+        // <p>${req}</p>
+        // <a href="/auth/logout">Log Out</a>
+        // `
     );
 });
 
