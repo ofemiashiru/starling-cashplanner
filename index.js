@@ -18,7 +18,7 @@ const app = express();
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
     // cookie: {maxAge: 1200000} //regulates how long the session lasts for in Milliseconds
   }));
 
@@ -78,7 +78,6 @@ app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
 function(req, res) {
-
     // Successful authentication, redirect home.
     res.redirect('/dashboard');
 });
@@ -101,11 +100,12 @@ app.route('/auth/logout')
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
     
-    res.send(req
-        // `
-        // <h1>Hello</h1>
-        // <a href="/auth/logout">Log Out</a>
-        // `
+    res.send(
+        `
+        <h1>Hello</h1>
+        <p>${req}</p>
+        <a href="/auth/logout">Log Out</a>
+        `
     );
 });
 
