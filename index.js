@@ -36,6 +36,10 @@ function isLoggedin(req, res, next){
     req.user ?  next(): res.redirect('/')
 }
 
+function isLoggedOut(req, res, next){
+    req.user ?  next(): null
+}
+
 passport.use(new OAuth2Strategy({
     authorizationURL: process.env.SANDBOX_API,
     tokenURL: process.env.TOKEN_URL,
@@ -63,7 +67,7 @@ if(process.env.NODE_ENV === "production"){
 }
 
 app.route('/')
-.get(isLoggedin,(req, res)=>{
+.get(isLoggedOut,(req, res)=>{
     res.send(`
         <h1>Welcome to my App</h1> 
         <a href="/auth">Authenticate</a>
