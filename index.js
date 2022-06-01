@@ -101,15 +101,16 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
+
+    res.json({data:req});
     
-    res.send(
-        req
-        // `
-        // <h1>Hello</h1>
-        // <p>${req}</p>
-        // <a href="/auth/logout">Log Out</a>
-        // `
-    );
+    // res.send(
+    //     `
+    //     <h1>Hello</h1>
+    //     <p>${req}</p>
+    //     <a href="/auth/logout">Log Out</a>
+    //     `
+    // );
 });
 
 
