@@ -137,7 +137,10 @@ app.route('/dashboard')
     })
     .then((res) => 
     {
-       console.log(res.data)
+       const title = res.data.title 
+       const firstName = res.data.firstName 
+       const lastName = res.data.lastName
+       const email = res.data.email 
     })
     .catch((error) => 
     {
@@ -146,7 +149,7 @@ app.route('/dashboard')
 
     res.send(
         `
-        <h1>Hello</h1>
+        <h1>Hello ${title} ${firstName} ${lastName}</h1>
         <a href="/auth/logout">Log Out</a>
         `
     );
