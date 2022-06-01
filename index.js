@@ -78,8 +78,15 @@ app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 function(req, res) {
     
+    axios.post('https://api-sandbox.starlingbank.com/oauth/access-token', {code: req.code})
+    .then(function (response) {
+    console.log(response);
+    })
+    .catch(function (error) {
+    console.log(error);
+    });
+
     // Successful authentication, redirect home.
-    console.log('reached')
     res.redirect('/dashboard');
 });
 
