@@ -23,7 +23,7 @@ app.use(session({
     // cookie: {maxAge: 1200000} //regulates how long the session lasts for in Milliseconds
   }));
 
-  app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(passport.initialize());
 app.use(passport.session())
@@ -44,13 +44,14 @@ passport.use(new OAuth2Strategy({
     callbackURL: process.env.OAUTH_REDIRECT_URI,
     tokenURL: process.env.TOKEN_URL 
   },
-  function(accessToken, refreshToken, profile, cb) {
-      console.log(cb)
-      console.log(profile)
-
-    
-    return cb(null, profile, accessToken, refreshToken);
-  }
+//   function(accessToken, refreshToken, profile, cb) {
+//     return cb(null, profile, accessToken, refreshToken);
+//   }
+    function(accessToken, refreshToken, profile, cb) {
+        User.findOrCreate({ exampleId: profile.id }, function (err, user) {
+            return cb(err, user);
+        });
+    }
 ));
 
 passport.serializeUser((user, done)=>{
@@ -99,9 +100,11 @@ app.route('/auth/failure')
 
 app.route('/auth/logout')
 .get((req, res) => {
-    req.logout();
-    req.session.destroy();
-    res.redirect('/')
+
+    console.log(req);
+    // req.logout();
+    // req.session.destroy();
+    // res.redirect('/')
 });
 
 
