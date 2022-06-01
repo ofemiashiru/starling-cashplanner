@@ -43,6 +43,7 @@ passport.use(new OAuth2Strategy({
     tokenURL: process.env.TOKEN_URL 
   },
   function(accessToken, refreshToken, profile, cb) {
+      console.log(profile)
     return cb(null, profile, accessToken);
   }
 ));
