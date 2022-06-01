@@ -78,26 +78,9 @@ app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
 function(req, res) {
-    
-    axios.post('https://api-sandbox.starlingbank.com/oauth/access-token', 
-    {
-        code: req.code,
-        client_id: req.client_id,
-        client_seceret: req.client_seceret,
-        grant_type: 'authorization_code',
-        redirect_uri: process.env.OAUTH_REDIRECT_URI
-    }), {
-        headers:'application/x-www-form-urlencoded'
-    }
-    .then(function (response) {
-    console.log(response);
-    })
-    .catch(function (error) {
-    console.log(error);
-    });
 
     // Successful authentication, redirect home.
-    res.redirect('/dashboard', {response});
+    res.redirect('/dashboard');
 });
 
 
@@ -117,7 +100,25 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    console.log("Hello");
+    
+    axios.post('https://api-sandbox.starlingbank.com/oauth/access-token', 
+    {
+        code: req.code,
+        client_id: req.client_id,
+        client_seceret: req.client_seceret,
+        grant_type: 'authorization_code',
+        redirect_uri: process.env.OAUTH_REDIRECT_URI
+    }), {
+        headers:'application/x-www-form-urlencoded'
+    }
+    .then(function (response) {
+    console.log(response);
+    })
+    .catch(function (error) {
+    console.log(error);
+    });
+
+
     res.send(req
         // `
         // <h1>Hello</h1>
