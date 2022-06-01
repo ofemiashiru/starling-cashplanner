@@ -108,9 +108,7 @@ app.route('/dashboard')
         client_seceret: req.client_seceret,
         grant_type: 'authorization_code',
         redirect_uri: process.env.OAUTH_REDIRECT_URI
-    }), {
-        headers:'application/x-www-form-urlencoded'
-    }
+    })
     .then(function (response) {
     console.log(response);
     })
