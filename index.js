@@ -53,6 +53,7 @@ passport.use(new OAuth2Strategy({
         'expires-in':'',
         'scope':''
     }
+    console.log(response['access-token'])
 
     return cb(null, profile, response);
   }
