@@ -47,8 +47,7 @@ passport.use(new OAuth2Strategy({
   function(accessToken, refreshToken, profile, cb) {
       console.log('Access Token:\n' + accessToken)
       console.log('Refresh Token:\n' + refreshToken)
-      console.log('Scope:\n' + scope)
-   
+    
     return cb(null, profile, accessToken);
   }
 ));
