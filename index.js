@@ -66,7 +66,7 @@ app.route('/')
 .get((req, res)=>{
     res.send(`
         <h1>Welcome to my App</h1> 
-        <a href="/auth">Authenticate</a>
+        <a href="/auth">Authenticate with Starling Bank</a>
     `)
 })
 
@@ -84,7 +84,6 @@ function(req, res) {
 });
 
 
-
 app.route('/auth/failure')
 .get((req, res) => {
     res.send('<h1>Something went wrong</h1>')
@@ -98,7 +97,6 @@ app.route('/auth/logout')
     //         return next(err)
     //     }
     // });
-    
     req.session.destroy();
     res.redirect('/');
 });
