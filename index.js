@@ -36,7 +36,6 @@ function isLoggedin(req, res, next){
     req.user ?  next(): res.redirect('/')
 }
 
-
 passport.use(new OAuth2Strategy({
     authorizationURL: process.env.SANDBOX_API,
     tokenURL: process.env.TOKEN_URL,
@@ -109,17 +108,39 @@ app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
     const userInfo = req.user
 
-    axios.get('https://api-sandbox.starlingbank.com/api/v2/account-holder', {
+    //Get AccountHolderUiD
+    axios.get('https://api-sandbox.starlingbank.com/api/v2/account-holder', 
+    {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
             "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
         }
     })
-    .then((res) => {
-        console.log(res.data)
+    .then((res) => 
+    {
+        const accountHolderUid = res.data.accountHolderUid;
     })
-    .catch((error) => {
+    .catch((error) => 
+    {
+        console.error(error)
+    })
+
+    //Get Account Holder Name
+    axios.get('https://api-sandbox.starlingbank.com/api/v2/identity/individual', 
+    {
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+        }
+    })
+    .then((res) => 
+    {
+       console.log(res.data)
+    })
+    .catch((error) => 
+    {
         console.error(error)
     })
 
