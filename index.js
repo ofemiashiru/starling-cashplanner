@@ -7,6 +7,7 @@ const session = require('express-session')
 const path = require('path');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2');
+const axios = require('axios');
 
 const crypto = require('crypto');
 let nonce = crypto.randomBytes(16).toString('base64');
@@ -24,10 +25,9 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session())
+
 //Set port to default port based on project server or 4000
 const port = process.env.PORT || 3000;
-
-
 
 
 function isLoggedin(req, res, next){
@@ -100,7 +100,8 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    console.log(res.user)
+    console.log(req.user)
+
     res.send(
         `
         <h1>Hello</h1>
@@ -110,10 +111,6 @@ app.route('/dashboard')
 
 });
 
-app.route(`/api/v2/accounts/{accountUid}/balance`)
-.get(isLoggedin,(req, res)=>{
-    res.json();
-})
 
 
 
