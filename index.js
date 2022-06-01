@@ -63,7 +63,7 @@ if(process.env.NODE_ENV === "production"){
 }
 
 app.route('/')
-.get((req, res)=>{
+.get(isLoggedin,(req, res)=>{
     res.send(`
         <h1>Welcome to my App</h1> 
         <a href="/auth">Authenticate</a>
