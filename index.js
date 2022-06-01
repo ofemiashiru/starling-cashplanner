@@ -44,14 +44,18 @@ passport.use(new OAuth2Strategy({
     callbackURL: process.env.OAUTH_REDIRECT_URI,
     tokenURL: process.env.TOKEN_URL 
   },
-//   function(accessToken, refreshToken, profile, cb) {
-//     return cb(null, profile, accessToken, refreshToken);
-//   }
-    function(accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({ exampleId: profile.id }, function (err, user) {
-            return cb(err, user);
-        });
+  function(accessToken, refreshToken, profile, cb) {
+    const response = 
+    {
+        'access-token': accessToken,
+        'refresh-token': refreshToken,
+        'token-type': '',
+        'expires-in':'',
+        'scope':''
     }
+
+    return cb(null, profile, response);
+  }
 ));
 
 passport.serializeUser((user, done)=>{
