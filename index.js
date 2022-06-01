@@ -44,7 +44,7 @@ passport.use(new OAuth2Strategy({
     callbackURL: process.env.OAUTH_REDIRECT_URI,
     tokenURL: process.env.TOKEN_URL 
   },
-  function(accessToken, refreshToken, profile, a,b,c, cb) {
+  function(accessToken, refreshToken, profile, cb) {
     const response = 
     {
         'access-token': accessToken,
@@ -54,9 +54,7 @@ passport.use(new OAuth2Strategy({
         'scope':''
     }
 
-    console.log(a)
-    console.log(b)
-    console.log(c)
+    console.log('Profile---\n' + profile)
 
     return cb(null, profile, response);
   }
