@@ -52,7 +52,6 @@ passport.use(new OAuth2Strategy({
 
 passport.serializeUser((user, done)=>{
     done(null, user);
-    console.log(user)
 });
 
 passport.deserializeUser((user, done)=>{
@@ -77,21 +76,17 @@ app.route('/auth')
 .get(passport.authenticate('oauth2', {scope:[], state:nonce}))
 
 
-// app.route('/auth/callback')
-// .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
-
-// function(req, res) {
-//     console.log(req)
-//     // Successful authentication, redirect home.
-//     // res.redirect('/dashboard');
-// });
-
 app.route('/auth/callback')
-.get((req, res)=>{
+.get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
-    console.log(req.body)
+function(req, res) {
 
-})
+
+
+    // Successful authentication, redirect home.
+    res.redirect('/dashboard');
+});
+
 
 
 
