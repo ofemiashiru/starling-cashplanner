@@ -107,7 +107,7 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    console.log(req.params)
+    console.log(params)
     res.send(
         `
         <h1>Hello</h1>
