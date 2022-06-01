@@ -45,7 +45,7 @@ passport.use(new OAuth2Strategy({
     tokenURL: process.env.TOKEN_URL 
   },
   function(accessToken, refreshToken, profile, cb) {
-      console.log(profile)
+      console.log(accessToken)
     return cb(null, profile, accessToken);
   }
 ));
@@ -80,8 +80,6 @@ app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
 function(req, res) {
-
-
 
     // Successful authentication, redirect home.
     res.redirect('/dashboard');
