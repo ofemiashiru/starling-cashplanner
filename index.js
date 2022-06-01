@@ -97,8 +97,7 @@ app.route('/auth/failure')
 
 app.route('/auth/logout')
 .get((req, res) => {
-
-    // req.logout();
+    req.logOut();
     req.session.destroy();
     res.redirect('/');
 });
@@ -106,7 +105,7 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    
+    console.log(req)
     res.send(
         `
         <h1>Hello</h1>
