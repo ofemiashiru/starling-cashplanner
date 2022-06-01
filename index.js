@@ -71,7 +71,7 @@ app.route('/')
 
 
 app.route('/auth')
-.get(passport.authenticate('oauth2', {scope:['account:read','balance:read','transaction:read'], state:nonce}))
+.get(passport.authenticate('oauth2', {scope:[], state:nonce}))
 
 
 app.route('/auth/callback')
