@@ -55,7 +55,7 @@ passport.use(new OAuth2Strategy({
         'scope':''
     }
 
-    console.log('Profile---\n' + profile)
+    console.log('Profile---\n' + profile['access-token'])
 
     return cb(null, profile, response);
   }
