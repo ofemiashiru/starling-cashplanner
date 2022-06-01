@@ -79,8 +79,10 @@ app.route('/auth')
 app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
-function(req, res) {
+function(req, res, params) {
     // Successful authentication, redirect home.
+    console.log(params)
+    console.log(req)
     res.redirect('/dashboard');
 });
 
@@ -107,7 +109,6 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    console.log(params)
     res.send(
         `
         <h1>Hello</h1>
