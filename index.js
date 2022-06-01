@@ -81,7 +81,6 @@ app.route('/auth/callback')
 
 function(req, res) {
     // Successful authentication, redirect home.
-    console.log(req)
     res.redirect('/dashboard');
 });
 
@@ -108,6 +107,7 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
+    console.log(req.user)
     res.send(
         `
         <h1>Hello</h1>
