@@ -79,9 +79,8 @@ app.route('/auth')
 app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
-function(req, res, params) {
+function(req, res) {
     // Successful authentication, redirect home.
-    console.log(params)
     console.log(req)
     res.redirect('/dashboard');
 });
