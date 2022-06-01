@@ -107,7 +107,22 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    console.log(req.user)
+    const userInfo = req.user
+
+    axios.get('https://api-sandbox.starlingbank.com/api/v2/accounts/{accountUid}/balance', {
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+        }
+    })
+    .then((res) => {
+        console.log(res.data)
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+
     res.send(
         `
         <h1>Hello</h1>
