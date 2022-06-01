@@ -104,7 +104,7 @@ app.route('/dashboard')
         `
         <h1>Hello</h1>
         <a href="/auth/logout">Log Out</a>
-        <p>${req.user.uuid}</p>
+        <p>${req.user.accountHolderUid}</p>
         `
     );
 
