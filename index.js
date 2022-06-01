@@ -140,19 +140,22 @@ app.route('/dashboard')
        const title = res.data.title 
        const firstName = res.data.firstName 
        const lastName = res.data.lastName
-       const email = res.data.email 
+       const email = res.data.email
+       
+       res.send(
+        `
+        <h1>Hello ${title} ${firstName} ${lastName}</h1>
+        <a href="/auth/logout">Log Out</a>
+        `
+        );
+       
     })
     .catch((error) => 
     {
         console.error(error)
     })
 
-    res.send(
-        `
-        <h1>Hello ${title} ${firstName} ${lastName}</h1>
-        <a href="/auth/logout">Log Out</a>
-        `
-    );
+  
 });
 
 
