@@ -33,7 +33,7 @@ const port = process.env.PORT || 3000;
 
 
 function isLoggedin(req, res, next){
-    req.user ?  next(): res.sendStatus(401)
+    req.user ?  next(): res.redirect('/')
 }
 
 
