@@ -19,7 +19,7 @@ const app = express();
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: false
     // cookie: {maxAge: 1200000} //regulates how long the session lasts for in Milliseconds
   }));
 
@@ -46,10 +46,7 @@ passport.use(new OAuth2Strategy({
     grantType: 'authorization_code' 
   },
   function(accessToken, refreshToken, params, profile, cb) {
-
-    console.log(params)
-
-    return cb(null, params);
+    return cb(null, params); //Params from Starling Website
   }
 ));
 
