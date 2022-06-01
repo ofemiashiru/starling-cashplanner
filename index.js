@@ -9,6 +9,7 @@ const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2');
 const axios = require('axios');
 
+//this handles the state
 const crypto = require('crypto');
 let nonce = crypto.randomBytes(16).toString('base64');
 
@@ -79,9 +80,9 @@ app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
 function(req, res) {
-    console.log(req.body)
+    console.log(req)
     // Successful authentication, redirect home.
-    res.redirect('/dashboard');
+    // res.redirect('/dashboard');
 });
 
 
@@ -101,16 +102,13 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-
-    res.json({data:req});
     
-    // res.send(
-    //     `
-    //     <h1>Hello</h1>
-    //     <p>${req}</p>
-    //     <a href="/auth/logout">Log Out</a>
-    //     `
-    // );
+    res.send(
+        `
+        <h1>Hello</h1>
+        <a href="/auth/logout">Log Out</a>
+        `
+    );
 });
 
 
