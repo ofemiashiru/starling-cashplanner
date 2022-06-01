@@ -105,7 +105,7 @@ app.route('/auth/logout')
 
 
 app.route('/dashboard')
-.get(isLoggedin,(req, response) => {
+.get(isLoggedin,(req, res) => {
     const userInfo = req.user
 
     //Get AccountHolderUiD
@@ -117,9 +117,9 @@ app.route('/dashboard')
             "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
         }
     })
-    .then((res) => 
+    .then((response) => 
     {
-        const accountHolderUid = res.data.accountHolderUid;
+        const accountHolderUid = response.data.accountHolderUid;
     })
     .catch((error) => 
     {
@@ -135,14 +135,14 @@ app.route('/dashboard')
             "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
         }
     })
-    .then((res) => 
+    .then((response) => 
     {
-       const title = res.data.title 
-       const firstName = res.data.firstName 
-       const lastName = res.data.lastName
-       const email = res.data.email
+       const title = response.data.title 
+       const firstName = response.data.firstName 
+       const lastName = response.data.lastName
+       const email = response.data.email
        
-       response.send(
+       res.send(
         `
         <h1>Hello ${title} ${firstName} ${lastName}</h1>
         <a href="/auth/logout">Log Out</a>
