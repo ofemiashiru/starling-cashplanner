@@ -83,7 +83,6 @@ app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
 function(req, res) {
-
     // Successful authentication, redirect home.
     res.redirect('/dashboard');
 });
@@ -99,10 +98,9 @@ app.route('/auth/failure')
 app.route('/auth/logout')
 .get((req, res) => {
 
-    console.log(req);
     // req.logout();
     req.session.destroy();
-    // res.redirect('/')
+    res.redirect('/');
 });
 
 
