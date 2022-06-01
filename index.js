@@ -89,9 +89,17 @@ app.route('/auth/failure')
 });
 
 
+app.route('/auth/logout')
+.get(isLoggedin,(req,res) => {
+    req.logout();
+    req.session.destroy();
+    res.redirect('/')
+});
+
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
+    console.log(req)
     res.send(
         `
         <h1>Hello</h1>
@@ -101,12 +109,6 @@ app.route('/dashboard')
 
 });
 
-app.route('/logout')
-.get(isLoggedin,(req,res) => {
-    req.logout();
-    req.session.destroy();
-    res.redirect('/')
-});
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
 app.listen(port, () => {
