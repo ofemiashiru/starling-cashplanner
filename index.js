@@ -105,7 +105,7 @@ app.route('/auth/logout')
 
 
 app.route('/dashboard')
-.get(isLoggedin,(req, res) => {
+.get(isLoggedin,(req, response) => {
     const userInfo = req.user
 
     //Get AccountHolderUiD
@@ -142,7 +142,7 @@ app.route('/dashboard')
        const lastName = res.data.lastName
        const email = res.data.email
        
-       res.send(
+       response.send(
         `
         <h1>Hello ${title} ${firstName} ${lastName}</h1>
         <a href="/auth/logout">Log Out</a>
