@@ -100,6 +100,10 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
+    fetch(`/api/v2/accounts/${req.user.accountUid}/balance`)
+    .then((data) => {
+        res.json({x:data})
+      })
     res.send(
         `
         <h1>Hello</h1>
@@ -109,7 +113,10 @@ app.route('/dashboard')
 
 });
 
-// app.route(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`)
+app.route(`/api/v2/accounts/{accountUid}/balance`)
+.get(isLoggedin,(req, res)=>{
+    res.json();
+})
 
 
 
