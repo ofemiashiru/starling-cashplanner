@@ -103,11 +103,13 @@ app.route('/dashboard')
         `
         <h1>Hello</h1>
         <a href="/auth/logout">Log Out</a>
-        <p>${req.user.accountUid}</p>
+        <p>${req.user}</p>
         `
     );
 
 });
+
+app.route(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`)
 
 
 
