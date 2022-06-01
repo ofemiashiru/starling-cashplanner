@@ -109,7 +109,7 @@ app.route('/dashboard')
 
 });
 
-app.route(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`)
+// app.route(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`)
 
 
 
