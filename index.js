@@ -88,6 +88,8 @@ app.route('/auth/failure')
     res.send('<h1>Something went wrong</h1>')
 });
 
+
+
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
     res.send(
@@ -99,12 +101,11 @@ app.route('/dashboard')
 
 });
 
-
 app.route('/logout')
-.get((req,res)=>{
+.get(isLoggedin,(req,res) => {
     req.logout();
     req.session.destroy();
-    res.send('Goodbye');
+    res.redirect('/')
 });
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
