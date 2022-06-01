@@ -40,7 +40,7 @@ passport.use(new OAuth2Strategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: process.env.OAUTH_REDIRECT_URI,
-    tokenURL: process.env.TOKEN_URL
+    tokenURL: process.env.TOKEN_URL 
   },
   function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile, accessToken);
@@ -77,9 +77,15 @@ app.route('/auth')
 app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 function(req, res) {
+    
     // Successful authentication, redirect home.
     res.redirect('/dashboard');
 });
+
+app.route('/auth/callback/:code&:state')
+.get((req,res)=>{
+    console.log("reached")
+})
 
 
 app.route('/auth/failure')
