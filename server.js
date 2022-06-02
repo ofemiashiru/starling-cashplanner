@@ -95,10 +95,12 @@ app.route('/auth/logout')
     req.logOut((err)=>{
         if(err){
             return next(err)
+        } else {
+            req.session.destroy();
+            res.redirect('/');
         }
     });
-    // req.session.destroy();
-    // res.redirect('/');
+    
 });
 
 
