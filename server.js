@@ -107,6 +107,7 @@ app.route('/auth/logout')
                     "Content-Type": "application/json",
                     "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
                 }
+                 
             })
 
             req.session.destroy();
@@ -119,7 +120,7 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
-    
+
     const userInfo = req.user
 
     //Get AccountHolderUiD
