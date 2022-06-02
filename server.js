@@ -92,6 +92,9 @@ app.route('/auth/failure')
 
 app.route('/auth/logout')
 .get((req, res, next) => {
+
+    const userInfo = req.user
+
     req.logOut((err)=>{
         if(err){
             return next(err)
@@ -116,6 +119,7 @@ app.route('/auth/logout')
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
+    
     const userInfo = req.user
 
     //Get AccountHolderUiD
