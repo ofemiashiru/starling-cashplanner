@@ -92,13 +92,13 @@ app.route('/auth/failure')
 
 app.route('/auth/logout')
 .get((req, res, next) => {
-    // req.logout((err)=>{
-    //     if(err){
-    //         return next(err)
-    //     }
-    // });
-    req.session.destroy();
-    res.redirect('/');
+    req.logOut((err)=>{
+        if(err){
+            return next(err)
+        }
+    });
+    // req.session.destroy();
+    // res.redirect('/');
 });
 
 
