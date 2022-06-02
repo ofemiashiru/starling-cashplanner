@@ -45,7 +45,7 @@ passport.use(new OAuth2Strategy({
     callbackURL: process.env.OAUTH_REDIRECT_URI 
   },
   function(accessToken, refreshToken, params, profile, cb) {
-    return cb(null, params); //Params from Starling Website
+    return cb(null, params); //Params from Starling Bank Website
   }
 ));
 
@@ -72,7 +72,7 @@ app.route('/')
 
 
 app.route('/auth')
-.get(passport.authenticate('oauth2', {scope:['account:read'], state:nonce}))
+.get(passport.authenticate('oauth2', {scope:[], state:nonce}))
 
 
 app.route('/auth/callback')
