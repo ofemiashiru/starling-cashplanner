@@ -148,7 +148,7 @@ app.route('/dashboard')
     const requestThree = axios.get(three, theHeaders);
 
     const allRequests = endpoints.map((link)=>{
-        axios.get(link, theHeaders)
+        return axios.get(link, theHeaders)
     })
 
     console.log(allRequests)
@@ -160,7 +160,7 @@ app.route('/dashboard')
         const identity = response[1].data
         const accounts = response[2].data
 
-        console.log(accountHolder, identity)
+        console.log(accountHolder, identity, accounts)
 
         res.send(
                 `
