@@ -144,8 +144,8 @@ app.route('/dashboard')
     .then(
         axios.spread((...responses)=>{
 
-            const responseOne = responses[0].data;
-            const responseTwo = responses[1].data;
+            const responseOne = responses[0];
+            const responseTwo = responses[1];
 
             console.log(`${responseOne}\n ${responseTwo}`)
 
