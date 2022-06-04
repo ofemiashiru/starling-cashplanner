@@ -165,7 +165,7 @@ app.route('/dashboard')
 
         }
 
-        console.log('The Balance\n' + getBalance(accounts[0].accountUid))
+        console.log('The Balance\n' + getBalance(accounts.accountUid))
 
         res.send(
                 `
