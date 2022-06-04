@@ -140,6 +140,7 @@ app.route('/dashboard')
     const requestOne = axios.get(one, theHeaders);
     const requestTwo = axios.get(two, theHeaders);
 
+
     axios.all([requestOne, requestTwo])
     .then((response)=>{
         
@@ -147,6 +148,17 @@ app.route('/dashboard')
         const identity = response[1].data
 
         console.log(accountHolder, identity)
+
+        res.send(
+                `
+                <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
+                <h2>${identity.email}</h2>
+                <p>
+                    Account type: ${accountHolder.accountHolderType}
+                </p>
+                <a href="/auth/logout">Log Out</a>
+                `
+            );
 
     })
     .catch(err =>{
