@@ -135,7 +135,7 @@ app.route('/dashboard')
     const endpoints = [
         'https://api-sandbox.starlingbank.com/api/v2/account-holder',
         'https://api-sandbox.starlingbank.com/api/v2/identity/individual',
-        'https://api-sandbox.starlingbank.com/api/v2/accounts'
+        'https://api-sandbox.starlingbank.com/api/v2/accounts',
     ];
 
     const allRequests = endpoints.map((link)=>{
@@ -148,6 +148,8 @@ app.route('/dashboard')
         const accountHolder = response[0].data
         const identity = response[1].data
         const accounts = response[2].data
+
+        console.log(accountHolder, identity, accounts)
 
         res.send(
                 `
