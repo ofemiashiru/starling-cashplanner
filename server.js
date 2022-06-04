@@ -151,21 +151,19 @@ app.route('/dashboard')
 
         console.log(accountHolder, identity, accounts)
 
-        function getBalance(accountID){
-
-            axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountID}/balance`, theHeaders)
-            .then((response)=>{
-
-                return response.data
-
-            })
-            .catch(err =>{
-                console.error(err)
-            })
-
-        }
 
         console.log('The Balance\n' + getBalance(accounts.accountUid))
+
+
+        axios.get('https://api-sandbox.starlingbank.com/api/v2/accounts/' + accountID + '/balance', theHeaders)
+        .then((response)=>{
+
+            console.log(response)
+
+        })
+        .catch(err =>{
+            console.error(err)
+        })
 
         res.send(
                 `
