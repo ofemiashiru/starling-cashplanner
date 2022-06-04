@@ -141,16 +141,11 @@ app.route('/dashboard')
     const requestTwo = axios.get(two, theHeaders);
 
     axios.all([requestOne, requestTwo])
-    .then(
-        axios.spread((...responses)=>{
+    .then((response)=>{
 
-            const responseOne = responses;
-            const responseTwo = responses;
-
-            console.log(`${responseOne}\n ${responseTwo}`)
-
-        })
-    )
+        console.log(response)
+        
+    })
     .catch(err =>{
         console.error(err)
     })
