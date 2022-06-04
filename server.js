@@ -144,7 +144,7 @@ app.route('/dashboard')
     .then((response)=>{
         
         const accountHolder = response[0].data
-        const identity = response[0].data
+        const identity = response[1].data
 
         console.log(accountHolder, identity)
 
