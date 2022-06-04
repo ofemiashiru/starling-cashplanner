@@ -142,8 +142,11 @@ app.route('/dashboard')
 
     axios.all([requestOne, requestTwo])
     .then((response)=>{
+        
+        const accountHolder = response[0].data
+        const identity = response[0].data
 
-        console.log(response[0].data)
+        console.log(accountHolder, identity)
 
     })
     .catch(err =>{
