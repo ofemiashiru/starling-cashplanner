@@ -152,8 +152,8 @@ app.route('/dashboard')
     })
 
     console.log(allRequests)
-
-    axios.all([requestOne, requestTwo, requestThree])
+    //[requestOne, requestTwo, requestThree]
+    axios.all(allRequests)
     .then((response)=>{
         
         const accountHolder = response[0].data
