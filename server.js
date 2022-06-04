@@ -147,7 +147,7 @@ app.route('/dashboard')
             const responseOne = responses[0].data;
             const responseTwo = responses[1].data;
 
-            console.log(`${responseOne}\n ${respnseTwo}`)
+            console.log(`${responseOne}\n ${responseTwo}`)
 
         })
     )
