@@ -132,20 +132,33 @@ app.route('/dashboard')
         "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
     }}
 
+    const endpoints = [
+        'https://api-sandbox.starlingbank.com/api/v2/account-holder',
+        'https://api-sandbox.starlingbank.com/api/v2/identity/individual',
+        'https://api-sandbox.starlingbank.com/api/v2/accounts'
+    ];
 
     let one = 'https://api-sandbox.starlingbank.com/api/v2/account-holder'
     let two = 'https://api-sandbox.starlingbank.com/api/v2/identity/individual'
+    let three = 'https://api-sandbox.starlingbank.com/api/v2/accounts'
 
 
     const requestOne = axios.get(one, theHeaders);
     const requestTwo = axios.get(two, theHeaders);
+    const requestThree = axios.get(three, theHeaders);
 
+    const allRequests = endpoints.map((link)=>{
+        axios.get(link, theHeaders)
+    })
 
-    axios.all([requestOne, requestTwo])
+    console.log(allRequests)
+
+    axios.all([requestOne, requestTwo, requestThree])
     .then((response)=>{
         
         const accountHolder = response[0].data
         const identity = response[1].data
+        const accounts = response[2].data
 
         console.log(accountHolder, identity)
 
