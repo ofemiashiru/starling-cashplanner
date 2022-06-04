@@ -125,20 +125,22 @@ app.route('/dashboard')
 
     const userInfo = req.user
 
+    const theHeaders =  {
+        headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+    }}
+
+
     let one = 'https://api-sandbox.starlingbank.com/api/v2/account-holder'
     let two = 'https://api-sandbox.starlingbank.com/api/v2/identity/individual'
 
-    const requestOne = axios.get(one);
-    const requestTwo = axios.get(two);
 
-    axios.all([requestOne,requestTwo],
-        {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
-            }
-        })
+    const requestOne = axios.get(one, theHeaders);
+    const requestTwo = axios.get(two, theHeaders);
+
+    axios.all([requestOne, requestTwo])
     .then(
         axios.spread((...responses)=>{
 
