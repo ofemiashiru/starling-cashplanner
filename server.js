@@ -118,58 +118,91 @@ app.route('/auth/logout')
 });
 
 
+
+
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
 
     const userInfo = req.user
 
+    let one = 'https://api-sandbox.starlingbank.com/api/v2/account-holder'
+    let two = 'https://api-sandbox.starlingbank.com/api/v2/identity/individual'
+
+    const requestOne = axios.get(one);
+    const requestTwo = axios.get(two);
+
+    axios.all([requestOne,requestTwo],
+        {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+            }
+        })
+    .then(
+        axios.spread((...responses)=>{
+
+            const responseOne = resposnes[0];
+            const responseTwo = responses[1];
+
+            console.log(`${responseOne}\n ${respnseTwo}`)
+
+        })
+    )
+    .catch(err =>{
+        console.error(err)
+    })
+
     //Get AccountHolderUiD
-    axios.get('https://api-sandbox.starlingbank.com/api/v2/account-holder', 
-    {
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
-        }
-    })
-    .then((response) => 
-    {
-        const accountHolderUid = response.data.accountHolderUid;
-    })
-    .catch((error) => 
-    {
-        console.error(error)
-    })
+    // axios.get('https://api-sandbox.starlingbank.com/api/v2/account-holder', 
+    // {
+    //     headers: {
+    //         "Accept": "application/json",
+    //         "Content-Type": "application/json",
+    //         "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+    //     }
+    // })
+    // .then((response) => 
+    // {
+    //     const accountHolderUid = response.data.accountHolderUid;
+    // })
+    // .catch((error) => 
+    // {
+    //     console.error(error)
+    // })
 
-    //Get Account Holder Name and Details
-    axios.get('https://api-sandbox.starlingbank.com/api/v2/identity/individual', 
-    {
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
-        }
-    })
-    .then((response) => 
-    {
-       const title = response.data.title 
-       const firstName = response.data.firstName 
-       const lastName = response.data.lastName
-       const email = response.data.email
+    // //Get Account Holder Name and Details
+    // axios.get('https://api-sandbox.starlingbank.com/api/v2/identity/individual', 
+    // {
+    //     headers: {
+    //         "Accept": "application/json",
+    //         "Content-Type": "application/json",
+    //         "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+    //     }
+    // })
+    // .then((response) => 
+    // {
+    //    const title = response.data.title 
+    //    const firstName = response.data.firstName 
+    //    const lastName = response.data.lastName
+    //    const email = response.data.email
 
-       res.send(
-            `
-            <h1>Hello ${title} ${firstName} ${lastName}</h1>
-            <h2>${email}</h2>
-            <a href="/auth/logout">Log Out</a>
-            `
-        );
+    //    res.send(
+    //         `
+    //         <h1>Hello ${title} ${firstName} ${lastName}</h1>
+    //         <h2>${email}</h2>
+    //         <p>
+
+    //         </p>
+    //         <a href="/auth/logout">Log Out</a>
+    //         `
+    //     );
        
-    })
-    .catch((error) => 
-    {
-        console.error(error)
-    })
+    // })
+    // .catch((error) => 
+    // {
+    //     console.error(error)
+    // })
 
   
 });
