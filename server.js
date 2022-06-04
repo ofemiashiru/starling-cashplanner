@@ -143,8 +143,8 @@ app.route('/dashboard')
     axios.all([requestOne, requestTwo])
     .then((response)=>{
 
-        console.log(response)
-        
+        console.log(response[0].data)
+
     })
     .catch(err =>{
         console.error(err)
