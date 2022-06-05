@@ -202,8 +202,16 @@ app.route('/balance')
     
         }
     }   
-
-    axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts`, theHeaders)
+    console.log(userInfo)
+    axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts`, 
+    {
+        headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+    
+        }
+    })
     .then((response)=>{
         const accounts = response
 
