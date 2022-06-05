@@ -171,17 +171,17 @@ app.route('/dashboard')
                 console.error(err)
             })
 
-        res.send(
-                `
-                <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
-                <h2>${identity.email}</h2>
-                <p>
-                    Account type: ${accountHolder.accountHolderType}
-                </p>
-                <p>B</p>
-                <a href="/auth/logout">Log Out</a>
-                `
-            );
+        // res.send(
+        //         `
+        //         <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
+        //         <h2>${identity.email}</h2>
+        //         <p>
+        //             Account type: ${accountHolder.accountHolderType}
+        //         </p>
+        //         <p>B</p>
+        //         <a href="/auth/logout">Log Out</a>
+        //         `
+        //     );
 
     })
     .catch(err =>{
