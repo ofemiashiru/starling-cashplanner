@@ -165,7 +165,7 @@ app.route('/dashboard')
                  
             })
             .then((x)=>{
-                return x
+                console.log('The balance\n' + x)
             })
             .catch((err)=>{
                 console.error(err)
@@ -178,7 +178,7 @@ app.route('/dashboard')
                 <p>
                     Account type: ${accountHolder.accountHolderType}
                 </p>
-                <p>${theBalance}</p>
+                <p>B</p>
                 <a href="/auth/logout">Log Out</a>
                 `
             );
