@@ -138,6 +138,7 @@ app.route('/dashboard')
         'https://api-sandbox.starlingbank.com/api/v2/account-holder',
         'https://api-sandbox.starlingbank.com/api/v2/identity/individual',
         'https://api-sandbox.starlingbank.com/api/v2/accounts',
+        `https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`
     ];
 
     const allRequests = endpoints.map((link)=>{
@@ -151,8 +152,9 @@ app.route('/dashboard')
         const accountHolder = response[0].data
         const identity = response[1].data
         const accounts = response[2].data.accounts
+        const balance = response[3]
 
-        console.log(accountHolder, identity, accounts)
+        console.log(accountHolder, identity, accounts, balance)
 
         const accountUid = accounts[0].accountUid
         console.log('Account Uid\n' + accountUid)
@@ -175,26 +177,6 @@ app.route('/dashboard')
     })
     
 });
-
-app.route('/balance')
-.get(isLoggedin,(req, res)=>{
-
-    const userInfo = req.user
-
-    const headers = setHeaders(userInfo.token_type, userInfo.access_token)
-  
-    console.log(userInfo)
-    axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts`, headers)
-    .then((response)=>{
-        const accounts = response
-
-        console.log("TESTING\n" + accounts)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-
-})
 
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
