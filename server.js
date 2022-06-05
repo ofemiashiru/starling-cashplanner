@@ -205,7 +205,7 @@ app.route('/balance')
 
     axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts`, theHeaders)
     .then((response)=>{
-        const accounts = response[0].data.accounts
+        const accounts = response
 
         console.log(accounts)
     })
