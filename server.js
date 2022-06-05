@@ -147,18 +147,26 @@ app.route('/dashboard')
         
         const accountHolder = response[0].data
         const identity = response[1].data
-        const accounts = response[2].data.accounts[0]
+        const accounts = response[2].data.accounts
 
         console.log(accountHolder, identity, accounts)
 
+        const accountUid = accounts[0].accountUid
+        console.log('Account Uid\n' + accountUid)
 
-        console.log('The Balance\n' + accounts.accountUid)
 
+        axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, 
+        {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+            }
+             
+        })
+        .then((re)=>{
 
-        axios.get('https://api-sandbox.starlingbank.com/api/v2/accounts/' + accounts.accountUid + '/balance', theHeaders)
-        .then((response)=>{
-
-            console.log('Balance ' + response)
+            console.log('Balance ' + re)
 
         })
         .catch(err =>{
