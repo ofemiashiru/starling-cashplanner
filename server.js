@@ -168,7 +168,7 @@ app.route('/dashboard')
                 console.error(err);
             })
         }
-        console.log(balance)
+        console.log(balance())
 
         res.send(
             `
