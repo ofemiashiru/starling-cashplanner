@@ -111,21 +111,25 @@ app.route('/auth/logout')
 
     const headers = setHeaders(userInfo.token_type, userInfo.access_token)
 
-    req.logOut((err)=>{
-        if(err){
-            return next(err)
-        } else {
+    axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
+    .then(()=>{
 
-            axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
-            .catch((err)=>{
-                console.error(err)
-            })
+        req.logOut((err)=>{
+            if(err){
+                return next(err)
+            } else {
+    
+                req.session.destroy();
+                res.redirect('/');
+                
+            }
+        });
 
-            req.session.destroy();
-            res.redirect('/');
-            
-        }
-    });
+    })
+    .catch((err)=>{
+        console.error(err)
+    })
+
     
 });
 
