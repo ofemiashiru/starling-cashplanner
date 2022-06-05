@@ -70,6 +70,7 @@ app.route('/')
     `)
 })
 
+
 app.route('/auth')
 .get(passport.authenticate('oauth2', {scope:[], state:nonce}))
 
@@ -79,7 +80,7 @@ app.route('/auth/callback')
 
     function(req, res) {
         // Successful authentication, redirect home.
-     res.redirect('/dashboard');
+        res.redirect('/dashboard');
     }
 );
 
@@ -89,7 +90,7 @@ app.route('/auth/failure')
     res.send('<h1>Something went wrong</h1>')
 });
 
-//Function to Set Headers
+//Function to Set
 function setHeaders(tokenType, accessToken){
 
     const theHeaders =  {
@@ -109,29 +110,19 @@ app.route('/auth/logout')
 
     const userInfo = req.user
 
-    console.log(userInfo)
-
     const headers = setHeaders(userInfo.token_type, userInfo.access_token)
 
-    console.log(headers)
+    req.logOut((err)=>{
+        if(err){
+            return next(err)
+        } else {
 
-    axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
-    .catch((err)=>{
-        console.error(err)
-    })
+            axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
 
-    // req.logOut((err)=>{
-    //     if(err){
-    //         return next(err)
-    //     } else {
-
-            
-
-    //         req.session.destroy();
-    //         res.redirect('/');
-            
-    //     }
-    // });
+            req.session.destroy();
+            res.redirect('/');
+        }
+    });
     
 });
 
@@ -152,6 +143,7 @@ app.route('/dashboard')
     const allRequests = endpoints.map((link)=>{
         return axios.get(link, headers)
     })
+
 
     axios.all(allRequests)
     .then((response)=>{
