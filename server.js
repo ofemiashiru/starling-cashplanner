@@ -97,7 +97,6 @@ function setHeaders(tokenType, accessToken){
         "Accept": "application/json",
         "Content-Type": "application/json",
         "Authorization": `${tokenType} ${accessToken}`
-    
         }
     }
     
@@ -110,20 +109,14 @@ app.route('/auth/logout')
 
     const userInfo = req.user
 
+    const headers = setHeaders(userInfo.token_type, userInfo.access_token)
+
     req.logOut((err)=>{
         if(err){
             return next(err)
         } else {
 
-            axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout',
-            {
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
-                }
-                 
-            })
+            axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
 
             req.session.destroy();
             res.redirect('/');
@@ -137,15 +130,6 @@ app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
 
     const userInfo = req.user
-
-    // const theHeaders =  {
-    //     headers: {
-    //     "Accept": "application/json",
-    //     "Content-Type": "application/json",
-    //     "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
-    
-    //     }
-    // }
     
     const headers = setHeaders(userInfo.token_type, userInfo.access_token)
 
@@ -172,22 +156,6 @@ app.route('/dashboard')
         console.log('Account Uid\n' + accountUid)
 
 
-        const theBalance = axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/98e14b1a-17aa-4c1b-9b5e-cf5c1f7f7f75/balance`,
-            {
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
-                }
-                 
-            })
-            .then((x)=>{
-                console.log('The balance\n' + x)
-            })
-            .catch((err)=>{
-                console.error(err)
-            })
-
         res.send(
                 `
                 <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
@@ -211,20 +179,14 @@ app.route('/balance')
 
     const userInfo = req.user
 
-    const theHeaders =  {
-        headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
-    
-        }
-    }   
+    const headers = setHeaders(userInfo.token_type, userInfo.access_token)
+  
     console.log(userInfo)
-    axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts`, theHeaders)
+    axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts`, headers)
     .then((response)=>{
         const accounts = response
 
-        console.log(accounts)
+        console.log("TESTING\n" + accounts)
     })
     .catch((err)=>{
         console.log(err)
