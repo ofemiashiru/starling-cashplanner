@@ -155,7 +155,7 @@ app.route('/dashboard')
         console.log('Account Uid\n' + accountUid)
 
 
-        axios.get('https://api-sandbox.starlingbank.com//api/v2/accounts/'+accountUid+'/balance',
+        const theBalance = axios.get('https://api-sandbox.starlingbank.com//api/v2/accounts/'+accountUid+'/balance',
             {
                 headers: {
                     "Accept": "application/json",
@@ -165,7 +165,7 @@ app.route('/dashboard')
                  
             })
             .then((x)=>{
-                console.log("THE BALANCE\n" + x.data)
+                return x
             })
             .catch((err)=>{
                 console.error(err)
@@ -178,6 +178,7 @@ app.route('/dashboard')
                 <p>
                     Account type: ${accountHolder.accountHolderType}
                 </p>
+                <p>${theBalance}</p>
                 <a href="/auth/logout">Log Out</a>
                 `
             );
