@@ -164,6 +164,10 @@ app.route('/dashboard')
             const balance = result.data
             console.log(balance)
 
+            const tCBalance = balance.totalClearedBalance
+
+            const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits)
+
             res.send(
                 `
                 <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
@@ -171,6 +175,10 @@ app.route('/dashboard')
                 <p>
                     Account type: ${accountHolder.accountHolderType}
                 </p>
+                <h2>
+                You have ${displayBalance} to spend
+                </h2>
+
                 <a href="/auth/logout">Log Out</a>
                 `
             );
