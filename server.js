@@ -117,9 +117,17 @@ app.route('/auth/logout')
         } else {
 
             axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
+            .then(()=>{
 
-            req.session.destroy();
-            res.redirect('/');
+                req.session.destroy();
+                res.redirect('/');
+
+            })
+            .catch((err)=>{
+                console.error(err)
+            })
+
+            
         }
     });
     
