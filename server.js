@@ -164,7 +164,7 @@ app.route('/dashboard')
             const balance = result.data
             console.log(balance)
 
-            const tCBalance = balance.totalClearedBalance
+            const tCBalance = balance.totalClearedBalance/100
 
             const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits)
 
