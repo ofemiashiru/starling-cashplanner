@@ -151,32 +151,31 @@ app.route('/dashboard')
         const accountHolder = response[0].data
         const identity = response[1].data
         const accounts = response[2].data.accounts
-        const balance = response[3]
 
-        console.log(accountHolder, identity, accounts, balance)
+        console.log(accountHolder, identity, accounts)
 
         const accountUid = accounts[0].accountUid
         console.log('Account Uid\n' + accountUid)
 
 
-        res.send(
-                `
-                <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
-                <h2>${identity.email}</h2>
-                <p>
-                    Account type: ${accountHolder.accountHolderType}
-                </p>
-                <a href="/auth/logout">Log Out</a>
-                `
-            );
-
         axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
-            console.log(result)
+            console.log(result.data)
         })
         .catch((err)=>{
             console.error(err);
         })
+
+        res.send(
+            `
+            <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
+            <h2>${identity.email}</h2>
+            <p>
+                Account type: ${accountHolder.accountHolderType}
+            </p>
+            <a href="/auth/logout">Log Out</a>
+            `
+        );
 
 
     })
