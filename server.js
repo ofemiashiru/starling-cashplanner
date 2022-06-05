@@ -155,7 +155,7 @@ app.route('/dashboard')
         console.log('Account Uid\n' + accountUid)
 
 
-        const theBalance = await axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/98e14b1a-17aa-4c1b-9b5e-cf5c1f7f7f75/balance`,
+        const theBalance = axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/98e14b1a-17aa-4c1b-9b5e-cf5c1f7f7f75/balance`,
             {
                 headers: {
                     "Accept": "application/json",
