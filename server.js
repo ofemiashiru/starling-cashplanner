@@ -155,7 +155,7 @@ app.route('/dashboard')
         console.log('Account Uid\n' + accountUid)
 
 
-        const theBalance = axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/98e14b1a-17aa-4c1b-9b5e-cf5c1f7f7f75/balance`,
+        const theBalance = await axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/98e14b1a-17aa-4c1b-9b5e-cf5c1f7f7f75/balance`,
             {
                 headers: {
                     "Accept": "application/json",
@@ -171,17 +171,16 @@ app.route('/dashboard')
                 console.error(err)
             })
 
-        // res.send(
-        //         `
-        //         <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
-        //         <h2>${identity.email}</h2>
-        //         <p>
-        //             Account type: ${accountHolder.accountHolderType}
-        //         </p>
-        //         <p>B</p>
-        //         <a href="/auth/logout">Log Out</a>
-        //         `
-        //     );
+        res.send(
+                `
+                <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
+                <h2>${identity.email}</h2>
+                <p>
+                    Account type: ${accountHolder.accountHolderType}
+                </p>
+                <a href="/auth/logout">Log Out</a>
+                `
+            );
 
     })
     .catch(err =>{
@@ -189,6 +188,30 @@ app.route('/dashboard')
     })
     
 });
+
+app.route('/balance')
+.get(isLoggedin,(req, res)=>{
+
+    const userInfo = req.user
+
+    const theHeaders =  {
+        headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+    
+        }
+    }   
+
+    axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts`, theHeaders)
+    .then((response)=>{
+        const accounts = response[0].data.accounts
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+
+})
 
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
