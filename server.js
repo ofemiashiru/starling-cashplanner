@@ -138,7 +138,6 @@ app.route('/dashboard')
         'https://api-sandbox.starlingbank.com/api/v2/account-holder',
         'https://api-sandbox.starlingbank.com/api/v2/identity/individual',
         'https://api-sandbox.starlingbank.com/api/v2/accounts',
-        `https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`
     ];
 
     const allRequests = endpoints.map((link)=>{
@@ -170,6 +169,15 @@ app.route('/dashboard')
                 <a href="/auth/logout">Log Out</a>
                 `
             );
+
+        axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
+        .then((result)=>{
+            console.log(result)
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+
 
     })
     .catch(err =>{
