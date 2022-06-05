@@ -156,14 +156,7 @@ app.route('/dashboard')
 
 
         axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, 
-        {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
-            }
-             
-        })
+        theHeaders)
         .then((re)=>{
 
             console.log('Balance ' + re)
