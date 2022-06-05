@@ -158,8 +158,8 @@ app.route('/dashboard')
         console.log('Account Uid\n' + accountUid)
 
 
-        const balance = ()=>{
-            let d = axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
+        const getBalance = ()=>{
+            let request = axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
             .then((result)=>{
                 // console.log(result.data)
                 return result.data
@@ -168,9 +168,12 @@ app.route('/dashboard')
                 console.error(err);
             })
 
-            return d
+            return request
         }
-        console.log(balance())
+
+        getBalance.then((result)=>{
+            console.log(result)
+        })
 
         res.send(
             `
