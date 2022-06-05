@@ -96,7 +96,7 @@ function setHeaders(tokenType, accessToken){
         headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": `${tokenType} ${accesToken}`
+        "Authorization": `${tokenType} ${accessToken}`
     
         }
     }
