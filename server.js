@@ -155,16 +155,21 @@ app.route('/dashboard')
         console.log('Account Uid\n' + accountUid)
 
 
-        axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, 
-        theHeaders)
-        .then((re)=>{
-
-            console.log('Balance ' + re)
-
-        })
-        .catch(err =>{
-            console.error(err)
-        })
+        axios.get('https://api-sandbox.starlingbank.com//api/v2/accounts/'+accountUid+'/balance',
+            {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
+                }
+                 
+            })
+            .then((x)=>{
+                console.log("THE BALANCE\n" + x.data)
+            })
+            .catch((err)=>{
+                console.error(err)
+            })
 
         res.send(
                 `
@@ -181,7 +186,7 @@ app.route('/dashboard')
     .catch(err =>{
         console.error(err)
     })
-  
+    
 });
 
 
