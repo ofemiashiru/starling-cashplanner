@@ -70,7 +70,6 @@ app.route('/')
     `)
 })
 
-
 app.route('/auth')
 .get(passport.authenticate('oauth2', {scope:[], state:nonce}))
 
@@ -78,10 +77,11 @@ app.route('/auth')
 app.route('/auth/callback')
 .get(passport.authenticate('oauth2', { failureRedirect: '/auth/failure' }),
 
-function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/dashboard');
-});
+    function(req, res) {
+        // Successful authentication, redirect home.
+     res.redirect('/dashboard');
+    }
+);
 
 
 app.route('/auth/failure')
@@ -89,7 +89,7 @@ app.route('/auth/failure')
     res.send('<h1>Something went wrong</h1>')
 });
 
-
+//Function to Set Headers
 function setHeaders(tokenType, accessToken){
 
     const theHeaders =  {
