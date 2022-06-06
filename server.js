@@ -154,10 +154,7 @@ app.route('/dashboard')
 
         console.log(accountHolder, identity, accounts)
 
-        const accountUid = accounts[0].accountUid
-        console.log('Account Uid\n' + accountUid)
-
-
+        const accountUid = accounts[0].accountUid 
         axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
         
