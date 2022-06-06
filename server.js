@@ -170,8 +170,8 @@ app.route('/dashboard')
 
             axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${dateCreated}`, headers)
             .then((aResult)=>{
-                
-                console.log(aResult.data.feedItems[0]) //array
+                const feed = aResult.data.feedItems //this is an array which I can use map on
+                console.log('Transaction Feed\n' + feed) 
 
                 res.send(
                     `
