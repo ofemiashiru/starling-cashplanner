@@ -155,7 +155,8 @@ app.route('/dashboard')
         console.log(accountHolder, identity, accounts)
 
         const accountUid = accounts[0].accountUid
-        const categoryUid = accounts[0].defaultCategory 
+        const categoryUid = accounts[0].defaultCategory
+        const dateCreated = accounts[0].createdAt
         axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
         
@@ -167,7 +168,7 @@ app.route('/dashboard')
             const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits/100)
 
 
-            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}`, headers)
+            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${dateCreated}`, headers)
             .then((aResult)=>{
                 
                 console.log(aResult)
