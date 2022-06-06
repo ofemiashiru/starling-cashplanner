@@ -186,7 +186,7 @@ app.route('/dashboard')
                     </h2>
     
                     <h2>Feed</h2>
-                    ${feed.map((item)=> `<p>${item.feedItemUid}</p>`)}
+                    ${feed.map((item)=> `<p>${item.spendingCategory}</p>`)}
     
                     <a href="/auth/logout">Log Out</a>
                     `
