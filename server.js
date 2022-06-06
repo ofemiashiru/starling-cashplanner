@@ -3,7 +3,7 @@
 require('dotenv').config(); // This is to protect our codes, api keys etc.
 
 const express = require('express');
-const session = require('express-session')
+const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2');
@@ -26,14 +26,14 @@ app.use(session({
 app.use(express.urlencoded({ extended: true }));
 
 app.use(passport.initialize());
-app.use(passport.session())
+app.use(passport.session());
 
 //Set port to default port based on project server or 4000
 const port = process.env.PORT || 3000;
 
 
 function isLoggedin(req, res, next){
-    req.user ?  next(): res.redirect('/')
+    req.user ?  next(): res.redirect('/');
 }
 
 
@@ -59,7 +59,7 @@ passport.deserializeUser((user, done)=>{
 
 //process.env.NODE_ENV => production or undefined
 if(process.env.NODE_ENV === "production"){
-  app.use(express.static(path.join(__dirname,"/client/build")))
+  app.use(express.static(path.join(__dirname,"/client/build")));
 }
 
 app.route('/')
@@ -67,12 +67,12 @@ app.route('/')
     res.send(`
         <h1>Welcome to my App</h1> 
         <a href="/auth">Authenticate with Starling Bank</a>
-    `)
+    `);
 })
 
 
 app.route('/auth')
-.get(passport.authenticate('oauth2', {scope:[], state:nonce}))
+.get(passport.authenticate('oauth2', {scope:[], state:nonce}));
 
 
 app.route('/auth/callback')
@@ -87,7 +87,7 @@ app.route('/auth/callback')
 
 app.route('/auth/failure')
 .get((req, res) => {
-    res.send('<h1>Something went wrong</h1>')
+    res.send('<h1>Something went wrong</h1>');
 });
 
 //Function to Set
@@ -101,20 +101,20 @@ function setHeaders(tokenType, accessToken){
         }
     }
     
-    return theHeaders
+    return theHeaders;
 
 }
 
 app.route('/auth/logout')
 .get((req, res, next) => {
 
-    const userInfo = req.user
+    const userInfo = req.user;
 
-    const headers = setHeaders(userInfo.token_type, userInfo.access_token)
+    const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
     req.logOut((err)=>{
         if(err){
-            return next(err)
+            return next(err);
         } else {
 
             axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
@@ -130,9 +130,9 @@ app.route('/auth/logout')
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
 
-    const userInfo = req.user
+    const userInfo = req.user;
     
-    const headers = setHeaders(userInfo.token_type, userInfo.access_token)
+    const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
     const endpoints = [
         'https://api-sandbox.starlingbank.com/api/v2/account-holder',
@@ -141,38 +141,38 @@ app.route('/dashboard')
     ];
 
     const allRequests = endpoints.map((link)=>{
-        return axios.get(link, headers)
+        return axios.get(link, headers);
     })
 
 
     axios.all(allRequests)
     .then((response)=>{
         
-        const accountHolder = response[0].data
-        const identity = response[1].data
-        const accounts = response[2].data.accounts
+        const accountHolder = response[0].data;
+        const identity = response[1].data;
+        const accounts = response[2].data.accounts;
 
-        console.log(accountHolder, identity, accounts)
+        console.log(accountHolder, identity, accounts);
 
-        const accountUid = accounts[0].accountUid
-        const categoryUid = accounts[0].defaultCategory
-        const dateCreated = accounts[0].createdAt
+        const accountUid = accounts[0].accountUid;
+        const categoryUid = accounts[0].defaultCategory;
+        const dateCreated = accounts[0].createdAt;
         
         axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
         
-            const balance = result.data
-            console.log(balance)
+            const balance = result.data;
+            console.log(balance);
 
-            const tCBalance = balance.totalClearedBalance
-            const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits/100)
+            const tCBalance = balance.totalClearedBalance;
+            const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits/100);
 
 
             axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${dateCreated}`, headers)
             .then((aResult)=>{
                 
-                const feed = aResult.data.feedItems //this is an array which I can use map on
-                console.log(feed) 
+                const feed = aResult.data.feedItems; //this is an array which I can use map on
+                console.log(feed); 
 
                 res.send(
                     `
@@ -205,7 +205,7 @@ app.route('/dashboard')
 
     })
     .catch(err =>{
-        console.error(err)
+        console.error(err);
     })
     
 });
