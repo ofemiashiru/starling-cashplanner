@@ -165,20 +165,35 @@ app.route('/dashboard')
 
             const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits/100)
 
-            res.send(
-                `
-                <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
-                <h2>${identity.email}</h2>
-                <p>
-                    Account type: ${accountHolder.accountHolderType}
-                </p>
-                <h2>
-                You have ${displayBalance} to spend
-                </h2>
 
-                <a href="/auth/logout">Log Out</a>
-                `
-            );
+            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${defaultCategory}`, headers)
+            .then((aResult)=>{
+                
+                console.log(aResult)
+
+                res.send(
+                    `
+                    <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
+                    <h2>${identity.email}</h2>
+                    <p>
+                        Account type: ${accountHolder.accountHolderType}
+                    </p>
+                    <h2>
+                    You have ${displayBalance} to spend
+                    </h2>
+    
+                    <h2>Feed</h2>
+    
+    
+                    <a href="/auth/logout">Log Out</a>
+                    `
+                );
+
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+          
 
         })
         .catch((err)=>{
@@ -191,7 +206,6 @@ app.route('/dashboard')
     })
     
 });
-
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
 app.listen(port, () => {
