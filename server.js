@@ -170,8 +170,8 @@ app.route('/dashboard')
 
             axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${dateCreated}`, headers)
             .then((aResult)=>{
-                const feed = aResult
-                console.log(feed[0])
+                
+                console.log(aResult)
 
                 res.send(
                     `
