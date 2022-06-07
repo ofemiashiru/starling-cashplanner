@@ -193,7 +193,7 @@ app.route('/dashboard')
                         [item.spendingCategory] : acc[item.amount.minorUnits],
                     }), {})
                 }
-                console.log(groupPayments(feed));
+                console.log(groupPayments(feed)); 
 
                 res.send(
                     `
