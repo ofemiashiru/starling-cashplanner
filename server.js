@@ -188,9 +188,9 @@ app.route('/dashboard')
 
                 const groupPayments = (theFeed) =>{
                     
-                    return theFeed.reduce((acc, prevItem, item, i, x)=> ({
+                    return theFeed.reduce((acc, prevItem, item, i, x, a)=> ({
                         ...acc,
-                        [prevItem.spendingCategory] : x ,
+                        [prevItem.spendingCategory] : a ,
                     }), {})
                 }
                 console.log(groupPayments(feed)); 
