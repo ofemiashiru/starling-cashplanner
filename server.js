@@ -178,18 +178,11 @@ app.route('/dashboard')
                 
                 const feed = aResult.data.feedItems; //this is an array
                 // console.log(feed);
-                
-                // const groupPayments = (theFeed) =>{
-                //     return theFeed.reduce((acc, item)=> ({
-                //         ...acc,
-                //         [item.spendingCategory]: acc[item.spendingCategory] ? acc[item.spendingCategory] + 1 : 1, 
-                //     }), {})
-                // }
 
-
+                //Group Spending Categories and Amounts
                 let holder = {}
 
-                feed.forEach((item)=>{
+                feed.forEach((item) => {
                     if (holder.hasOwnProperty(item.spendingCategory)){
                         holder[item.spendingCategory] = holder[item.spendingCategory] + item.amount.minorUnits;
                     } else {
@@ -197,10 +190,12 @@ app.route('/dashboard')
                     }
                 })
 
+                console.log(holder)
+
                 let groupedFeed = [];
 
                 for (let prop in holder){
-                    groupedFeed.push({[prop]:holder[prop]})
+                    groupedFeed.push({spendingCategory:prop, amount:holder[prop]})
                 }
 
                 console.log(groupedFeed);
