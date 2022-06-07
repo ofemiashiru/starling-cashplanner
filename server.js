@@ -158,11 +158,10 @@ app.route('/dashboard')
         const categoryUid = accounts[0].defaultCategory;
 
         //Dates
-        const dateCreated = accounts[0].createdAt;
+        const accountCreated = accounts[0].createdAt;
         const now = new Date();
-        const firstDateOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
-        
-        console.log(firstDateOfMonth);
+        const firstOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
+       
         axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
         
@@ -173,11 +172,11 @@ app.route('/dashboard')
             const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits/100);
 
 
-            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${dateCreated}`, headers)
+            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfMonth}`, headers)
             .then((aResult)=>{
                 
                 const feed = aResult.data.feedItems; //this is an array which I can use map on
-                // console.log(feed); 
+                console.log(feed); 
 
                 res.send(
                     `
