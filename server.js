@@ -203,7 +203,7 @@ app.route('/dashboard')
                 for (let prop in holder){
                     groupedFeed.push({spendingCategory:prop, amount:holder[prop]})
                 }
-
+                console.log(groupedFeed)
                 res.send(
                     `
                     <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
