@@ -183,14 +183,18 @@ app.route('/dashboard')
                 let holder = {}
 
                 feed.forEach((item) => {
-                    if (holder.hasOwnProperty(item.spendingCategory)){
-                        holder[item.spendingCategory] = holder[item.spendingCategory] + item.amount.minorUnits;
-                    } else {
-                        holder[item.spendingCategory] = item.amount.minorUnits;
-                    }
-                })
 
-                console.log(holder)
+                    if (item.direction === 'OUT' && item.status === 'SETTLED'){ //Only brings back items that have left the account
+
+                        if (holder.hasOwnProperty(item.spendingCategory)){
+                            holder[item.spendingCategory] = holder[item.spendingCategory] + item.amount.minorUnits;
+                        } else {
+                            holder[item.spendingCategory] = item.amount.minorUnits;
+                        }
+
+                    }
+
+                })
 
                 let groupedFeed = [];
 
