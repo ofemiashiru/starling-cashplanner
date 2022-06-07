@@ -189,7 +189,7 @@ app.route('/dashboard')
                 const groupPayments = (theFeed) =>{
                     
                     return theFeed.reduce((acc, item)=> ({
-                        acc,
+                        ...acc,
                         [item.amount.minorUnits] : item.spendingCategory,
                     }), {})
                 }
