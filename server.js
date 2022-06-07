@@ -188,7 +188,7 @@ app.route('/dashboard')
                 const groupPayments = (theFeed) =>{
                     return theFeed.reduce((acc, item)=> ({
                         ...acc,
-                        [item.spendingCategory]: item.amount.minorUnits, 
+                        [item.spendingCategory]: item.spendingCategory[item.amount.minorUnits], 
                     }), {})
                 }
                 console.log(groupPayments(feed))
@@ -205,7 +205,7 @@ app.route('/dashboard')
                     </h2>
     
                     <h2>Feed</h2>
-                    ${feed.map((item)=> `<p>${item.spendingCategory}</p>`)}
+                    ${feed.map((item)=> `<p>${item.spendingCategory} ${item.amount.minorUnits}</p>`)}
     
                     <a href="/auth/logout">Log Out</a>
                     `
