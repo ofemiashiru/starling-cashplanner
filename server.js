@@ -178,13 +178,19 @@ app.route('/dashboard')
                 const feed = aResult.data.feedItems; //this is an array which I can use map on
                 // console.log(feed);
                 
+                // const groupPayments = (theFeed) =>{
+                //     return theFeed.reduce((acc, item)=> ({
+                //         ...acc,
+                //         [item.spendingCategory]: acc[item.spendingCategory] ? acc[item.spendingCategory] + 1 : 1, 
+                //     }), {})
+                // }
+
                 const groupPayments = (theFeed) =>{
                     return theFeed.reduce((acc, item)=> ({
                         ...acc,
-                        [item.spendingCategory]: acc[item.spendingCategory] ? acc[item.spendingCategory] + 1 : 1, 
+                        [item.spendingCategory]: acc[item.amount.minorUnits], 
                     }), {})
                 }
-
                 console.log(groupPayments(feed))
 
                 res.send(
