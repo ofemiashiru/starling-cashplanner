@@ -186,14 +186,24 @@ app.route('/dashboard')
                 //     }), {})
                 // }
 
-                const groupPayments = (theFeed) =>{
-                    
-                    return theFeed.reduce((acc, item)=> ({
-                        ...acc,
-                        [item.spendingCategory] : acc[item.spendingCategory] ? acc[item.spendingCategory] + 1 : 1,
-                    }), {})
+
+                let holder = {}
+
+                feed.forEach((item)=>{
+                    if (holder.hasOwnProperty(item.spendingCategory)){
+                        holder[item.spendingCategory] = holder[item.spendingCategory] + item.amount.minorUnits;
+                    } else {
+                        holder[item.spendingCategory] = item.amount.minorUnits;
+                    }
+                })
+
+                let groupedFeed = [];
+
+                for (let prop in holder){
+                    groupedFeed.push({[prop]:holder[prop]})
                 }
-                console.log(groupPayments(feed)); 
+
+                console.log(groupedFeed);
 
                 res.send(
                     `
