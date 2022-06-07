@@ -176,8 +176,8 @@ app.route('/dashboard')
             axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
             .then((aResult)=>{
                 
-                const feed = aResult.data.feedItems; //this is an array which I can use map on
-                console.log(feed);
+                const feed = aResult.data.feedItems; //this is an array
+                // console.log(feed);
                 
                 // const groupPayments = (theFeed) =>{
                 //     return theFeed.reduce((acc, item)=> ({
@@ -189,11 +189,11 @@ app.route('/dashboard')
                 const groupPayments = (theFeed) =>{
                     
                     return theFeed.reduce((acc, item)=> ({
-                        // ...acc,
+                        acc,
                         [item.amount.minorUnits] : item.spendingCategory,
                     }), {})
                 }
-                console.log(groupPayments(feed))
+                console.log(groupPayments(feed));
 
                 res.send(
                     `
