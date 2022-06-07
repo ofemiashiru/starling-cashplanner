@@ -184,7 +184,9 @@ app.route('/dashboard')
 
                 feed.forEach((item) => {
 
-                    if (item.direction === 'OUT' && item.status === 'SETTLED'){ //Only brings back items that have left the account
+                    //Only brings back items that have left the account (out and settled)
+
+                    if (item.direction === 'OUT' && item.status === 'SETTLED'){ 
 
                         if (holder.hasOwnProperty(item.spendingCategory)){
                             holder[item.spendingCategory] = holder[item.spendingCategory] + item.amount.minorUnits;
@@ -196,13 +198,11 @@ app.route('/dashboard')
 
                 })
 
-                let groupedFeed = [];
+                const groupedFeed = [];
 
                 for (let prop in holder){
                     groupedFeed.push({spendingCategory:prop, amount:holder[prop]})
                 }
-
-                console.log(groupedFeed);
 
                 res.send(
                     `
