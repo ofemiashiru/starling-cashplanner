@@ -3,7 +3,8 @@
 require('dotenv').config(); // This is to protect our codes, api keys etc.
 
 const express = require('express');
-const session = require('express-session');
+// const session = require('express-session');
+const session = require('cookie-session');
 const path = require('path');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2');
@@ -18,8 +19,8 @@ const app = express();
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
+    // resave: false,
+    // saveUninitialized: false
     // cookie: {maxAge: 1200000} //regulates how long the session lasts for in Milliseconds
   }));
 
