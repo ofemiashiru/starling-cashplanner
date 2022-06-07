@@ -160,7 +160,7 @@ app.route('/dashboard')
         //Dates
         const dateCreated = accounts[0].createdAt;
         const now = new Date();
-        const firstDateOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString
+        const firstDateOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
         
         console.log(firstDateOfMonth);
         axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
@@ -177,7 +177,7 @@ app.route('/dashboard')
             .then((aResult)=>{
                 
                 const feed = aResult.data.feedItems; //this is an array which I can use map on
-                console.log(feed); 
+                // console.log(feed); 
 
                 res.send(
                     `
