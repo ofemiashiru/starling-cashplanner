@@ -179,7 +179,7 @@ app.route('/dashboard')
                 const feed = aResult.data.feedItems; //this is an array
                 // console.log(feed);
 
-                //Group Spending Categories and Amounts
+                //Group Spending Categories and Amounts for outgoing transactions
                 let holder = {}
 
                 feed.forEach((item) => {
@@ -204,6 +204,7 @@ app.route('/dashboard')
                     groupedFeed.push({spendingCategory:prop, amount:holder[prop]})
                 }
                 console.log(groupedFeed)
+
                 res.send(
                     `
                     <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
@@ -215,8 +216,10 @@ app.route('/dashboard')
                     You have ${displayBalance} to spend
                     </h2>
     
-                    <h2>Feed</h2>
-                    ${feed.map((item)=> `<p>${item.spendingCategory} ${item.amount.minorUnits}</p>`)}
+                    <h2>Money Out</h2>
+                    ${groupedFeed.map((item)=> `<p>${item.spendingCategory} ${item.amount}</p>`)}
+
+                    <h2>Money In</h2>
     
                     <a href="/auth/logout">Log Out</a>
                     `
