@@ -216,7 +216,9 @@ app.route('/dashboard')
     
                 const groupedOutFeed = groupFeed(feed, 'OUT');
 
+                const totalOut =  groupedOutFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
 
+                console.log(totalOut);
 
 
                 res.send(
