@@ -203,7 +203,7 @@ app.route('/dashboard')
                         groupedFeed.push({spendingCategory:prop, amount:holder[prop]})
                     }
 
-                    return groupFeed;
+                    return groupedFeed;
 
                 }
 
