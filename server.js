@@ -173,7 +173,7 @@ app.route('/dashboard')
             const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits/100);
 
 
-            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
+            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${accountCreated}`, headers)
             .then((aResult)=>{
                 
                 const feed = aResult.data.feedItems; //this is an array
@@ -230,6 +230,8 @@ app.route('/dashboard')
 
                     <h2>Money Out</h2>
                     ${groupedOutFeed.map((item)=> `<p>${item.spendingCategory} ${item.amount}</p>`)}
+
+                    <h2>This Months Saving</h2>
 
                     <a href="/auth/logout">Log Out</a>
                     `
