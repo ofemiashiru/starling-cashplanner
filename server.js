@@ -180,7 +180,7 @@ app.route('/dashboard')
                 // console.log(feed);
 
                 //Group Spending Categories and Amounts for outgoing transactions
-                let holder = {}
+                let outHolder = {}
 
                 feed.forEach((item) => {
 
@@ -188,22 +188,46 @@ app.route('/dashboard')
 
                     if (item.direction === 'OUT' && item.status === 'SETTLED'){ 
 
-                        if (holder.hasOwnProperty(item.spendingCategory)){
-                            holder[item.spendingCategory] = holder[item.spendingCategory] + item.amount.minorUnits;
+                        if (outHolder.hasOwnProperty(item.spendingCategory)){
+                            outHolder[item.spendingCategory] = outHolder[item.spendingCategory] + item.amount.minorUnits;
                         } else {
-                            holder[item.spendingCategory] = item.amount.minorUnits;
+                            outHolder[item.spendingCategory] = item.amount.minorUnits;
                         }
 
                     }
 
                 })
 
-                const groupedFeed = [];
+                const groupedOutFeed = [];
 
-                for (let prop in holder){
-                    groupedFeed.push({spendingCategory:prop, amount:holder[prop]})
+                for (let prop in outHolder){
+                    groupedOutFeed.push({spendingCategory:prop, amount:outHolder[prop]})
                 }
-                console.log(groupedFeed)
+
+                //Group Spending Categories and Amounts for ingoing transactions
+                let inHolder = {}
+
+                feed.forEach((item) => {
+
+                    //Only brings back items that have left the account (out and settled)
+
+                    if (item.direction === 'IN' && item.status === 'SETTLED'){ 
+
+                        if (inHolder.hasOwnProperty(item.spendingCategory)){
+                            inHolder[item.spendingCategory] = inHolder[item.spendingCategory] + item.amount.minorUnits;
+                        } else {
+                            inHolder[item.spendingCategory] = item.amount.minorUnits;
+                        }
+
+                    }
+
+                })
+
+                const groupedInFeed = [];
+
+                for (let prop in outHolder){
+                    groupedInFeed.push({spendingCategory:prop, amount:inHolder[prop]})
+                }
 
                 res.send(
                     `
@@ -216,11 +240,13 @@ app.route('/dashboard')
                     You have ${displayBalance} to spend
                     </h2>
     
-                    <h2>Money Out</h2>
-                    ${groupedFeed.map((item)=> `<p>${item.spendingCategory} ${item.amount}</p>`)}
 
                     <h2>Money In</h2>
-    
+                    ${groupedInFeed.map((item)=> `<p>${item.spendingCategory} ${item.amount}</p>`)}
+
+                    <h2>Money Out</h2>
+                    ${groupedOutFeed.map((item)=> `<p>${item.spendingCategory} ${item.amount}</p>`)}
+
                     <a href="/auth/logout">Log Out</a>
                     `
                 );
