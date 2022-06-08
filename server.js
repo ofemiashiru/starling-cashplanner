@@ -225,7 +225,7 @@ app.route('/dashboard')
 
                 const groupedInFeed = [];
 
-                for (let prop in outHolder){
+                for (let prop in inHolder){
                     groupedInFeed.push({spendingCategory:prop, amount:inHolder[prop]})
                 }
 
