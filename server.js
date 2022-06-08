@@ -183,7 +183,7 @@ app.route('/dashboard')
                 // Groups Transaction Feed items by spending category, direction and status
                 function groupFeed(feed, direction, status = 'SETTLED'){
 
-                    let holder = {};
+                    const holder = {};
                     const groupedFeed = [];
 
                     feed.forEach((item) => {
@@ -211,14 +211,12 @@ app.route('/dashboard')
                 const groupedInFeed = groupFeed(feed, 'IN');
 
                 const totalIn =  groupedInFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
-
-                console.log(totalIn);
     
                 const groupedOutFeed = groupFeed(feed, 'OUT');
 
                 const totalOut =  groupedOutFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
 
-                console.log(totalOut);
+                const monthlySaving = totalIn - totalOut;
 
 
                 res.send(
@@ -240,6 +238,8 @@ app.route('/dashboard')
                     ${groupedOutFeed.map((item)=> `<p>${item.spendingCategory} ${item.amount}</p>`)}
 
                     <h2>This Months Saving</h2>
+
+                    ${monthlySaving}
 
                     <a href="/auth/logout">Log Out</a>
                     `
