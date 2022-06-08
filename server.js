@@ -173,13 +173,14 @@ app.route('/dashboard')
             const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits/100);
 
 
-            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${accountCreated}`, headers)
+            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
             .then((aResult)=>{
                 
                 const feed = aResult.data.feedItems; //this is an array
                 // console.log(feed);
 
 
+                // Groups Transaction Feed items by spending category, direction and status
                 function groupFeed(feed, direction, status = 'SETTLED'){
 
                     let holder = {};
@@ -209,9 +210,21 @@ app.route('/dashboard')
 
                 const groupedInFeed = groupFeed(feed, 'IN');
 
+                const totalIn = groupedInFeed.reduce((prev,curr)=>{
+                    return prev.amount + curr.amount
+                })
+
+                console.log(totalIn)
+
                 const groupedOutFeed = groupFeed(feed, 'OUT');
 
-            
+                const totalOut = groupedOutFeed.reduce((prev,curr)=>{
+                    return prev.amount + curr.amount
+                })
+
+                console.log(totalOut)
+
+                console.log('Saving ' + totalIn - totalOut)
 
                 res.send(
                     `
