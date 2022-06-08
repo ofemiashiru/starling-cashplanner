@@ -179,55 +179,39 @@ app.route('/dashboard')
                 const feed = aResult.data.feedItems; //this is an array
                 // console.log(feed);
 
-                //Group Spending Categories and Amounts for outgoing transactions
-                let outHolder = {}
 
-                feed.forEach((item) => {
+                function groupFeed(feed, direction, status = 'SETTLED'){
 
-                    //Only brings back items that have left the account (out and settled)
+                    let holder = {};
+                    const groupedFeed = [];
 
-                    if (item.direction === 'OUT' && item.status === 'SETTLED'){ 
+                    feed.forEach((item) => {
 
-                        if (outHolder.hasOwnProperty(item.spendingCategory)){
-                            outHolder[item.spendingCategory] = outHolder[item.spendingCategory] + item.amount.minorUnits;
-                        } else {
-                            outHolder[item.spendingCategory] = item.amount.minorUnits;
+                        if (item.direction === direction && item.status === status){ 
+
+                            if (holder.hasOwnProperty(item.spendingCategory)){
+                                holder[item.spendingCategory] = holder[item.spendingCategory] + item.amount.minorUnits;
+                            } else {
+                                holder[item.spendingCategory] = item.amount.minorUnits;
+                            }
+
                         }
 
+                    })
+
+                    for (let prop in holder){
+                        groupedFeed.push({spendingCategory:prop, amount:holder[prop]})
                     }
 
-                })
+                    return groupFeed;
 
-                const groupedOutFeed = [];
-
-                for (let prop in outHolder){
-                    groupedOutFeed.push({spendingCategory:prop, amount:outHolder[prop]})
                 }
 
-                //Group Spending Categories and Amounts for ingoing transactions
-                let inHolder = {}
+                const groupedInFeed = groupFeed(feed, 'IN');
 
-                feed.forEach((item) => {
+                const groupedOutFeed = groupFeed(feed, 'OUT');
 
-                    //Only brings back items that have left the account (out and settled)
-
-                    if (item.direction === 'IN' && item.status === 'SETTLED'){ 
-
-                        if (inHolder.hasOwnProperty(item.spendingCategory)){
-                            inHolder[item.spendingCategory] = inHolder[item.spendingCategory] + item.amount.minorUnits;
-                        } else {
-                            inHolder[item.spendingCategory] = item.amount.minorUnits;
-                        }
-
-                    }
-
-                })
-
-                const groupedInFeed = [];
-
-                for (let prop in inHolder){
-                    groupedInFeed.push({spendingCategory:prop, amount:inHolder[prop]})
-                }
+            
 
                 res.send(
                     `
