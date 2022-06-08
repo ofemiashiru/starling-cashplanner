@@ -210,9 +210,7 @@ app.route('/dashboard')
 
                 const groupedInFeed = groupFeed(feed, 'IN');
 
-                const totalIn = groupedInFeed.reduce((prev, curr)=>{
-                    return prev.amount + curr.amount, 0
-                })
+                const totalIn =  groupedInFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
 
                 console.log(totalIn);
     
