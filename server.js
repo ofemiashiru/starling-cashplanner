@@ -211,20 +211,20 @@ app.route('/dashboard')
                 const groupedInFeed = groupFeed(feed, 'IN');
 
                 const totalIn = groupedInFeed.reduce((prev,curr)=>{
-                    return prev.amount + curr.amount
+                    prev.amount + curr.amount, 0
                 })
 
                 console.log(totalIn)
 
                 const groupedOutFeed = groupFeed(feed, 'OUT');
 
-                const totalOut = groupedOutFeed.reduce((prev,curr)=>{
-                    return prev.amount + curr.amount
+                const totalOut = groupedOutFeed.reduce((prev, curr)=>{
+                    prev.amount + curr.amount, 0
                 })
 
                 console.log(totalOut)
 
-                console.log('Saving ' + totalIn - totalOut)
+                console.log(totalIn - totalOut)
 
                 res.send(
                     `
