@@ -239,7 +239,7 @@ app.route('/dashboard')
 
                     <h2>This Months Saving</h2>
 
-                    ${monthlySaving}
+                    <p>MONTHLY SAVING ${monthlySaving}</p>
 
                     <a href="/auth/logout">Log Out</a>
                     `
