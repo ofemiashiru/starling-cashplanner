@@ -116,7 +116,7 @@ function formatCurrency(amount, currency='GBP'){
     return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency }).format(amount/100);
 }
 
-app.route('/auth/logout')
+app.route('/logout')
 .get((req, res, next) => {
 
     const userInfo = req.user;
@@ -269,7 +269,7 @@ app.route('/dashboard')
 
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
 
-                        <a href="/auth/logout">Log Out</a>
+                        <a href="/logout">Log Out</a>
                     `
                 );
 
