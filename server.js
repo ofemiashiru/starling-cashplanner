@@ -16,6 +16,7 @@ let nonce = crypto.randomBytes(16).toString('base64');
 
 //Make the app use express
 const app = express();
+app.set('trust proxy', 1);
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
