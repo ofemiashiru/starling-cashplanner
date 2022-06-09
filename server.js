@@ -215,39 +215,41 @@ app.route('/dashboard')
                 }
 
                 const groupedInFeed = groupFeed(feed, 'IN');
-
                 const totalIn =  groupedInFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
     
                 const groupedOutFeed = groupFeed(feed, 'OUT');
-
                 const totalOut =  groupedOutFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
 
                 const monthlySaving = totalIn - totalOut;
 
 
+
                 res.send(
                     `
-                    <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
-                    <h2>${identity.email}</h2>
-                    <p>
-                        Account type: ${accountHolder.accountHolderType}
-                    </p>
-                    <h2>
-                    You have ${displayBalance} to spend
-                    </h2>
-    
+                        <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
+                        <h2>${identity.email}</h2>
+                        <p>
+                            Account type: ${accountHolder.accountHolderType}
+                        </p>
+                        <h2>
+                            You have ${displayBalance} to spend
+                        </h2>
+        
+                        <h2>Money In</h2>
+                        ${groupedInFeed.map((item) => `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
 
-                    <h2>Money In</h2>
-                    ${groupedInFeed.map((item)=> `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
+                        <h2>Money Out</h2>
+                        ${groupedOutFeed.map((item) => `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
 
-                    <h2>Money Out</h2>
-                    ${groupedOutFeed.map((item)=> `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
+                        <h2>Totals</h2>
+                        <p>MONTHLY IN ${formatCurrency(totalIn)}</p>
+                        <p>MONTHLY OUT ${formatCurrency(totalOut)}</p>
 
-                    <h2>This Months Saving</h2>
+                        <h2>This Months Saving</h2>
 
-                    <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
+                        <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
 
-                    <a href="/auth/logout">Log Out</a>
+                        <a href="/auth/logout">Log Out</a>
                     `
                 );
 
@@ -256,7 +258,6 @@ app.route('/dashboard')
                 console.error(err);
             })
           
-
         })
         .catch((err)=>{
             console.error(err);
