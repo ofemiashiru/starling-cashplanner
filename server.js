@@ -107,7 +107,7 @@ function setHeaders(tokenType, accessToken){
 }
 
 //Currency Changer
-function formatCurrency(currency, amount){
+function formatCurrency(currency = 'GBP', amount){
     return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency }).format(amount/100);
 }
 
@@ -176,7 +176,7 @@ app.route('/dashboard')
             console.log(balance);
 
             const tCBalance = balance.totalClearedBalance;
-            const displayBalance = formatCurrency(tCBalance.currency, tCBalance.minorUnits)
+            const displayBalance = formatCurrency(tCBalance.minorUnits)
 
 
             axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
@@ -238,7 +238,7 @@ app.route('/dashboard')
     
 
                     <h2>Money In</h2>
-                    ${groupedInFeed.map((item)=> `<p>${item.spendingCategory} ${item.amount}</p>`)}
+                    ${groupedInFeed.map((item)=> `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
 
                     <h2>Money Out</h2>
                     ${groupedOutFeed.map((item)=> `<p>${item.spendingCategory} ${item.amount}</p>`)}
