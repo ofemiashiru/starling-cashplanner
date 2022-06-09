@@ -116,17 +116,17 @@ function formatCurrency(amount, currency='GBP'){
     return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency }).format(amount/100);
 }
 
-app.route('/logout')
+app.route('/auth/logout')
 .get((req, res, next) => {
 
     const userInfo = req.user;
 
     // const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
-    axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', {
-        Header: {
-        // "Accept": "application/json",
-        // "Content-Type": "application/json",
+    axios.get('https://api-sandbox.starlingbank.com/api/v2/identity/logout', {
+        headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
         "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
         }
     })
@@ -269,7 +269,7 @@ app.route('/dashboard')
 
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
 
-                        <a href="/logout">Log Out</a>
+                        <a href="/auth/logout">Log Out</a>
                     `
                 );
 
