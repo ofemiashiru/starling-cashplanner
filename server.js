@@ -106,6 +106,11 @@ function setHeaders(tokenType, accessToken){
 
 }
 
+//Currency Changer
+function formatCurrency(currency, amount){
+    return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency }).format(amount/100);
+}
+
 app.route('/auth/logout')
 .get((req, res, next) => {
 
@@ -162,6 +167,7 @@ app.route('/dashboard')
         const accountCreated = accounts[0].createdAt;
         const now = new Date();
         const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
+        console.log(firstOfTheMonth)
        
         axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
@@ -170,7 +176,7 @@ app.route('/dashboard')
             console.log(balance);
 
             const tCBalance = balance.totalClearedBalance;
-            const displayBalance = new Intl.NumberFormat('en-GB', { style: 'currency', currency: `${tCBalance.currency}` }).format(tCBalance.minorUnits/100);
+            const displayBalance = formatCurrency(tCBalance.currency, tCBalance.minorUnits)
 
 
             axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
