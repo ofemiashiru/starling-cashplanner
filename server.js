@@ -121,9 +121,15 @@ app.route('/auth/logout')
 
     const userInfo = req.user;
 
-    const headers = setHeaders(userInfo.token_type, userInfo.access_token);
+    // const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
-    axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
+    axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', {
+        headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `${accessToken}`
+        }
+    })
     .then((response)=>{
         console.log(response)
         res.redirect('/');
