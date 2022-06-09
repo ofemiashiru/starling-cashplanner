@@ -3,8 +3,8 @@
 require('dotenv').config(); // This is to protect our codes, api keys etc.
 
 const express = require('express');
-const session = require('express-session');
-// const session = require('cookie-session');
+// const session = require('express-session');
+const session = require('cookie-session');
 const path = require('path');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2');
