@@ -241,11 +241,11 @@ app.route('/dashboard')
                     ${groupedInFeed.map((item)=> `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
 
                     <h2>Money Out</h2>
-                    ${groupedOutFeed.map((item)=> `<p>${item.spendingCategory} ${item.amount}</p>`)}
+                    ${groupedOutFeed.map((item)=> `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
 
                     <h2>This Months Saving</h2>
 
-                    <p>MONTHLY SAVING ${monthlySaving}</p> 
+                    <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
 
                     <a href="/auth/logout">Log Out</a>
                     `
