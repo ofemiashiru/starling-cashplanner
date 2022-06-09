@@ -128,6 +128,9 @@ app.route('/auth/logout')
         console.log(response)
         res.redirect('/');
     })
+    .catch((err)=>{
+        console.log(err)
+    })
 
     // req.logOut((err)=>{
     //     if(err){
