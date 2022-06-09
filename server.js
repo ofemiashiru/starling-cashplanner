@@ -107,7 +107,7 @@ function setHeaders(tokenType, accessToken){
 }
 
 //Currency Changer
-function formatCurrency(currency = 'GBP', amount){
+function formatCurrency(amount, currency='GBP'){
     return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency }).format(amount/100);
 }
 
