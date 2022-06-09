@@ -127,7 +127,7 @@ app.route('/auth/logout')
         headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": `${accessToken}`
+        "Authorization": `${userInfo.access_token}`
         }
     })
     .then((response)=>{
