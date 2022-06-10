@@ -120,38 +120,9 @@ app.route('/auth/logout')
 .get(isLoggedin,(req, res) => {
 
     // const userInfo = req.user;
-
+    console.log(req.session)
     req.session = null
     res.redirect('/');
-
-    // const headers = setHeaders(userInfo.token_type, userInfo.access_token);
-
-    // axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', {
-    //     headers: {
-    //     "Accept": "*/*",
-    //     "Content-Type": "application/json",
-    //     "Authorization": `${userInfo.token_type} ${userInfo.access_token}`
-    //     }
-    // })
-    // .then((response)=>{
-    //     console.log(response)
-    //     res.redirect('/');
-    // })
-    // .catch((err)=>{
-    //     console.log(err)
-    // })
-
-    // req.logOut((err)=>{
-    //     if(err){
-    //         return next(err);
-    //     } else {
-
-    //         axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
-
-    //         req.session.destroy();
-    //         res.redirect('/');
-    //     }
-    // });
     
 });
 
