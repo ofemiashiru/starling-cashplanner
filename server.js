@@ -117,7 +117,7 @@ function formatCurrency(amount, currency='GBP'){
 }
 
 app.route('/auth/logout')
-.get((req, res) => {
+.get(isLoggedin,(req, res) => {
 
     // const userInfo = req.user;
 
