@@ -38,7 +38,7 @@ app.use(passport.session());
 const port = process.env.PORT || 3000;
 
 
-function isLoggedin(req, res, next){
+const isLoggedin = (req, res, next)=>{
     req.user ?  next(): res.redirect('/');
 }
 
@@ -97,7 +97,7 @@ app.route('/auth/failure')
 });
 
 //Function to Set
-function setHeaders(tokenType, accessToken){
+const setHeaders = (tokenType, accessToken)=>{
 
     const theHeaders =  {
         headers: {
@@ -112,7 +112,7 @@ function setHeaders(tokenType, accessToken){
 }
 
 //Currency Changer
-function formatCurrency(amount, currency='GBP'){
+const formatCurrency = (amount, currency='GBP')=>{
     return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency }).format(amount/100);
 }
 
@@ -181,7 +181,7 @@ app.route('/dashboard')
 
 
                 // Groups Transaction Feed items by spending category, direction and status
-                function groupFeed(feed, direction, status = 'SETTLED'){
+                const groupFeed = (feed, direction, status = 'SETTLED')=>{
 
                     const holder = {};
                     const groupedFeed = [];
