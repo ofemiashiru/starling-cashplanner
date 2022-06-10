@@ -119,9 +119,9 @@ function formatCurrency(amount, currency='GBP'){
 app.route('/auth/logout')
 .get((req, res) => {
 
-    const userInfo = req.user;
+    // const userInfo = req.user;
 
-    req.session.destroy();
+    req.session = null
     res.redirect('/');
 
     // const headers = setHeaders(userInfo.token_type, userInfo.access_token);
