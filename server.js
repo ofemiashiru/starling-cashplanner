@@ -278,9 +278,10 @@ app.route('/dashboard')
 app.route('/add-to-space')
 .post((req, res)=>{
 
-    const name = req.body.name;
+    const theName = req.body.name;
     const accountUid = req.body.accountUid;
     const currency = req.body.currency;
+    const amount = req.body.amount;
 
     console.log(`${name}\n${accountUid}\n${currency}`)
 
@@ -289,7 +290,21 @@ app.route('/add-to-space')
     
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
-    // axiom.put(`https://api-sandbox.starlingbank.com/api/v2/account/${}/savings-goals`)
+    axiom.put(`https://api-sandbox.starlingbank.com/api/v2/account/${accountUid}/savings-goals`, headers, {
+        "name": theName,
+        "currency": currency,
+        "target": {
+          "currency": currency,
+          "minorUnits": amount
+        },
+        "base64EncodedPhoto": "string"
+    })
+    .then(()=>{
+
+    })
+    .catch((err)=>{
+        console.error(err)
+    })
 })
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
