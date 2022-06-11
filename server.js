@@ -283,7 +283,7 @@ app.route('/add-to-space')
     const currency = req.body.currency;
     const amount = req.body.amount;
 
-    console.log(`${name}\n${accountUid}\n${currency}`)
+    console.log(`${theName}\n${accountUid}\n${currency}`)
 
 
     const userInfo = req.user;
