@@ -248,11 +248,10 @@ app.route('/dashboard')
                         
                         <form action="/add-to-space" method='POST'> 
                             <input type='submit' value='Add to Savings'/> 
-                            <input type='hidden' name='title' value='Savings' />
+                            <input type='hidden' name='name' value='Savings' />
                             <input type='hidden' name='accountUid' value='${accountUid}' />
                             <input type='hidden' name='currency' value='${tCBalance.currency}' />
                             <input type='hidden' name='ammount' value='${monthlySaving}' />
-                            <input type='hidden' name='encoding' value='string' />
                         </form>
                         <a href="/auth/logout">Log Out</a>
                         
@@ -279,7 +278,12 @@ app.route('/dashboard')
 app.route('/add-to-space')
 .post((req, res)=>{
 
-    console.log(req.body.title);
+    const name = req.body.name;
+    const accountUid = req.body.accountUid;
+    const currency = req.body.currency;
+
+    console.log(`${name}\n${accountUid}\n${currency}`)
+
 
     const userInfo = req.user;
     
