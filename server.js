@@ -121,17 +121,8 @@ app.route('/auth/logout')
 
     const userInfo = req.user;
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
-    axios.put('https://api-sandbox.starlingbank.com/api/v2/accounts', {
-        headers: {
-        // "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": ` ${userInfo.access_token}`
-        }
-    })
+    axios.put('https://api-sandbox.starlingbank.com/api/v2/accounts', headers)
     .then((response)=>{
-
-        req.session = null
-        res.redirect('/');
         
     })
     .catch((err)=>{
@@ -139,7 +130,8 @@ app.route('/auth/logout')
     })
 
 
-    
+    req.session = null
+    res.redirect('/');
 });
 
 
