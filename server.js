@@ -117,7 +117,7 @@ const formatCurrency = (amount, currency='GBP')=>{
 }
 
 app.route('/auth/logout')
-.put(isLoggedin,(req, res) => {
+.post(isLoggedin,(req, res) => {
 
     const userInfo = req.user;
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
