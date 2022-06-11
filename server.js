@@ -68,6 +68,9 @@ if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname,"/client/build")));
 }
 
+//Use urlencoded to get post request from forms
+app.use(express.urlencoded({ extended: true }));
+
 app.route('/')
 .get((req, res)=>{
     res.send(`
@@ -245,7 +248,7 @@ app.route('/dashboard')
                         
                         <form action="/add-to-space" method='POST'> 
                             <input type='submit' value='Add to Savings'/> 
-                            <input type='hidden' name='Saving' value='Savings' />
+                            <input type='hidden' name='title' value='Savings' />
                             <input type='hidden' name='accountUid' value='${accountUid}' />
                             <input type='hidden' name='currency' value='${tCBalance.currency}' />
                             <input type='hidden' name='ammount' value='${monthlySaving}' />
