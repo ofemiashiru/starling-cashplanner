@@ -253,6 +253,8 @@ app.route('/dashboard')
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
                         <p>Create goal <a href="">Click Here to add to Goal</a></p>
                         <a href="/auth/logout">Log Out</a>
+                        <form action=''></form>
+                        <p class='reply'><form action='/auth/logout' method='POST'><input type='submit' /><input type='hidden' name='_method' value='PUT'/><input name='authenticity_token' value=${userInfo.access_token} type='hidden'/></form></p>
                     `
                 );
 
