@@ -279,7 +279,7 @@ app.route('/dashboard')
 app.route('/add-to-space')
 .post((req, res)=>{
 
-    console.log(req);
+    console.log(req.body.title);
 
     const userInfo = req.user;
     
