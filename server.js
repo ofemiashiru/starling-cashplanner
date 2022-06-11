@@ -117,14 +117,23 @@ const formatCurrency = (amount, currency='GBP')=>{
 }
 
 app.route('/auth/logout')
-.get(isLoggedin,(req, res) => {
+.put(isLoggedin,(req, res) => {
 
-    // const userInfo = req.user;
-    console.log(req.session)
+    const userInfo = req.user;
+    const headers = setHeaders(userInfo.token_type, userInfo.access_token);
+    axios.put('https://api-sandbox.starlingbank.com/api/v2/accounts', headers)
+    .then((response)=>{
+        console.log(response)
+    })
+    .catch((err)=>{
+        console.error(err)
+    })
+
+
     req.session = null
     res.redirect('/');
-    
 });
+
 
 
 app.route('/dashboard')
@@ -158,7 +167,7 @@ app.route('/dashboard')
         const categoryUid = accounts[0].defaultCategory;
 
         //Dates
-        const accountCreated = accounts[0].createdAt;
+        const accountCreated = accounts[0].createdAt; //when the account was created
         const now = new Date();
         const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
         console.log(firstOfTheMonth)
@@ -174,14 +183,14 @@ app.route('/dashboard')
 
 
             axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
-            .then((aResult)=>{
+            .then((aResult) => {
                 
                 const feed = aResult.data.feedItems; //this is an array
                 // console.log(feed);
 
 
                 // Groups Transaction Feed items by spending category, direction and status
-                const groupFeed = (feed, direction, status = 'SETTLED')=>{
+                const groupFeed = (feed, direction, status = 'SETTLED') => {
 
                     const holder = {};
                     const groupedFeed = [];
@@ -239,10 +248,10 @@ app.route('/dashboard')
                         <p>MONTHLY IN ${formatCurrency(totalIn)}</p>
                         <p>MONTHLY OUT ${formatCurrency(totalOut)}</p>
 
-                        <h2>This Months Saving</h2>
+                        <h2>Savings</h2>
 
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
-
+                        <p>Create goal <a href="">Click Here to add to Goal</a></p>
                         <a href="/auth/logout">Log Out</a>
                     `
                 );
