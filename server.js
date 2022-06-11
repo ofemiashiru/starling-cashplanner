@@ -96,6 +96,16 @@ app.route('/auth/failure')
     res.send('<h1>Something went wrong</h1>');
 });
 
+
+
+app.route('/auth/logout')
+.get(isLoggedin,(req, res) => {
+
+    req.session = null
+    res.redirect('/');
+});
+
+
 //Function to Set
 const setHeaders = (tokenType, accessToken)=>{
 
@@ -115,25 +125,6 @@ const setHeaders = (tokenType, accessToken)=>{
 const formatCurrency = (amount, currency='GBP')=>{
     return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency }).format(amount/100);
 }
-
-app.route('/auth/logout')
-.post(isLoggedin,(req, res) => {
-
-    const userInfo = req.user;
-    const headers = setHeaders(userInfo.token_type, userInfo.access_token);
-    axios.put('https://api-sandbox.starlingbank.com/api/v2/identity/logout', headers)
-    .then((response)=>{
-        
-    })
-    .catch((err)=>{
-        console.error(err)
-    })
-
-
-    req.session = null
-    res.redirect('/');
-});
-
 
 
 app.route('/dashboard')
@@ -251,10 +242,17 @@ app.route('/dashboard')
                         <h2>Savings</h2>
 
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
-                        <p>Create goal <a href="">Click Here to add to Goal</a></p>
+                        
+                        <form action="/add-to-space" method='POST'> 
+                            <input type='submit' value='Add to Savings'/> 
+                            <input type='hidden' name='Saving' value='Savings' />
+                            <input type='hidden' name='accountUid' value='${accountUid}' />
+                            <input type='hidden' name='currency' value='${tCBalance.currency}' />
+                            <input type='hidden' name='ammount' value='${monthlySaving}' />
+                            <input type='hidden' name='encoding' value='string' />
+                        </form>
                         <a href="/auth/logout">Log Out</a>
-                        <form action=''></form>
-                        <p class='reply'><form action='/auth/logout' method='POST'><input type='submit' /><input type='hidden' name='_method' value='PUT'/><input name='authenticity_token' value=${userInfo.access_token} type='hidden'/></form></p>
+                        
                     `
                 );
 
@@ -274,6 +272,18 @@ app.route('/dashboard')
     })
     
 });
+
+app.route('/add-to-space')
+.post((req, res)=>{
+
+    console.log(req);
+
+    const userInfo = req.user;
+    
+    const headers = setHeaders(userInfo.token_type, userInfo.access_token);
+
+    // axiom.put(`https://api-sandbox.starlingbank.com/api/v2/account/${}/savings-goals`)
+})
 
 ///////////////////////////PORT LISTEN//////////////////////////////////////////
 app.listen(port, () => {
