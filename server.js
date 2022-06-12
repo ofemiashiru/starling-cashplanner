@@ -44,8 +44,8 @@ const isLoggedin = (req, res, next)=>{
 
 
 passport.use(new OAuth2Strategy({
-    authorizationURL: process.env.SANDBOX_API,
-    tokenURL: process.env.TOKEN_URL,
+    authorizationURL: process.env.SANDBOX_OAUTH,
+    tokenURL: process.env.SANDBOX_TOKEN_URL,
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: process.env.OAUTH_REDIRECT_URI 
@@ -55,7 +55,7 @@ passport.use(new OAuth2Strategy({
   }
 ));
 
-const endpointLink = 'https://api-sandbox.starlingbank.com'
+const endpointLink = process.env.SANBOX_API;
 
 passport.serializeUser((user, done)=>{
     done(null, user);
