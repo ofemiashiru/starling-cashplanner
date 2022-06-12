@@ -12,7 +12,6 @@ const axios = require('axios');
 
 //this handles the state/nonce
 const crypto = require('crypto');
-// const { header } = require('express/lib/request');
 const nonce = crypto.randomBytes(16).toString('base64');
 
 //Make the app use express
@@ -27,7 +26,6 @@ app.use(session({
     cookie:{
         secure: true
         }
-    // cookie: {maxAge: 1200000} //regulates how long the session lasts for in Milliseconds
   }));
 
 app.use(express.urlencoded({ extended: true }));
@@ -38,7 +36,7 @@ app.use(passport.session());
 //Set port to default port based on project server or 4000
 const port = process.env.PORT || 3000;
 
-
+//Check whether user has logged in
 const isLoggedin = (req, res, next)=>{
     req.user ?  next(): res.redirect('/');
 }
@@ -110,12 +108,10 @@ app.route('/auth/callback')
     }
 );
 
-
 app.route('/auth/failure')
 .get((req, res) => {
     res.send('<h1>Something went wrong</h1>');
 });
-
 
 
 app.route('/auth/logout')
@@ -124,7 +120,6 @@ app.route('/auth/logout')
     req.session = null
     res.redirect('/');
 });
-
 
 //Function to Set
 const setHeaders = (tokenType, accessToken)=>{
@@ -281,7 +276,7 @@ app.route('/dashboard')
 
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p>
                         <p>DAILY SAVING ${formatCurrency(dailySaving)}</p> 
-                        <p>LAST DAY ${formatCurrency(lastDay)}</p> 
+                        <p>LAST DAY OF MONTH ${formatCurrency(lastDay)}</p> 
                         
                         <form action="/dashboard/add-to-space" method='POST'> 
                             <input type='submit' value='Add to Savings'/> 
@@ -337,7 +332,7 @@ app.route('/dashboard/add-to-space')
         "base64EncodedPhoto": "string"
     })
     .then(()=>{
-
+        console.log("success")
     })
     .catch((err)=>{
         console.error(err)
