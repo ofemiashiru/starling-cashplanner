@@ -267,7 +267,7 @@ app.route('/dashboard')
                             <input type='hidden' name='name' value='Savings' />
                             <input type='hidden' name='accountUid' value='${accountUid}' />
                             <input type='hidden' name='currency' value='${tCBalance.currency}' />
-                            <input type='hidden' name='ammount' value='${monthlySaving}' />
+                            <input type='hidden' name='amount' value='${monthlySaving}' />
                         </form>
                         <a href="/auth/logout">Log Out</a>
                         
@@ -299,7 +299,7 @@ app.route('/add-to-space')
     const currency = req.body.currency;
     const amount = req.body.amount;
 
-    console.log(`${spaceName}\n${accountUid}\n${currency}`)
+    console.log(`${spaceName}\n${accountUid}\n${currency}\n${amount}`)
 
     const userInfo = req.user;
     
