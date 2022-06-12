@@ -185,10 +185,11 @@ app.route('/dashboard')
         const getDaysInMonth = (year, month) => {
             return new Date(year, month, 0).getDate();
         }
+        const daysInMonth = getDaysInMonth(now.getFullYear(), now.getMonth())
 
         console.log(firstOfTheMonth)
 
-        console.log(getDaysInMonth(now.getFullYear(), 2))
+        console.log(daysInMonth)
        
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
@@ -243,6 +244,11 @@ app.route('/dashboard')
 
                 const monthlySaving = totalIn - totalOut;
 
+                //Daily Calculations
+                const remainder = monthlySaving % daysInMonth;
+                let dailySaving = (monthlySaving - remainder)/daysInMonth;
+                const lastDay = dailySaving + remainder;
+
 
                 axios.get(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, headers)
                 .then((spaces)=>{
@@ -278,8 +284,8 @@ app.route('/dashboard')
                         <h2>Savings</h2>
 
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p>
-                        <p>WEEKLY SAVING ${formatCurrency(monthlySaving)}</p>
-                        <p>DAILY SAVING ${formatCurrency(monthlySaving)}</p> 
+                        <p>DAILY SAVING ${formatCurrency(dailySaving)}</p> 
+                        <p>LAST DAY ${formatCurrency(lastDay)}</p> 
                         
                         <form action="/dashboard/add-to-space" method='POST'> 
                             <input type='submit' value='Add to Savings'/> 
