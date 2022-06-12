@@ -229,7 +229,7 @@ app.route('/dashboard')
                 const totalOut =  groupedOutFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
 
                 const monthlySaving = totalIn - totalOut;
-                const savingInPercent = `${Math.round((((monthlySaving/totalIn) * 100+Number.EPSILON)))/100}%`
+                const savingInPercent = `${Math.round((monthlySaving/totalIn) * 100 + Number.EPSILON)}%`
 
                 //Daily Calculations
                 const getDaysInMonth = (year, month) => {
@@ -240,7 +240,6 @@ app.route('/dashboard')
 
                 const remainder = monthlySaving % daysInMonth;
                 let dailySaving = (monthlySaving - remainder)/daysInMonth;
-                const lastDay = dailySaving + remainder;
                 
                 //Calendar - Daily Plan
                 const textDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
