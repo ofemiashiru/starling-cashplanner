@@ -262,7 +262,7 @@ app.route('/dashboard')
 
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
                         
-                        <form action="/add-to-space" method='POST'> 
+                        <form action="/dashboard/add-to-space" method='POST'> 
                             <input type='submit' value='Add to Savings'/> 
                             <input type='hidden' name='name' value='Savings' />
                             <input type='hidden' name='accountUid' value='${accountUid}' />
@@ -291,7 +291,7 @@ app.route('/dashboard')
     
 });
 
-app.route('/add-to-space')
+app.route('/dashboard/add-to-space')
 .post(isLoggedin, (req, res)=>{
 
     const spaceName = req.body.name;
@@ -305,14 +305,7 @@ app.route('/add-to-space')
     
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
-    axios.put(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, 
-        {
-            headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "Authorization": `${userInfo.token_type} ${process.env.PERSONL_ACCESS_TOKEN}`
-            }
-        }, 
+    axios.put(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, headers, 
         {
         "name": spaceName,
         "currency": currency,
