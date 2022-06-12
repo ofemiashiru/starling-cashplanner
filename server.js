@@ -187,15 +187,11 @@ app.route('/dashboard')
         }
         const daysInMonth = getDaysInMonth(now.getFullYear(), now.getMonth())
 
-        console.log(firstOfTheMonth)
-
-        console.log(daysInMonth)
        
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
         
             const balance = result.data;
-            console.log(balance);
 
             const tCBalance = balance.totalClearedBalance;
             const displayBalance = formatCurrency(tCBalance.minorUnits)
