@@ -290,7 +290,7 @@ app.route('/add-to-space')
     
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
-    axiom.put(`https://api-sandbox.starlingbank.com/api/v2/account/${accountUid}/savings-goals`, headers, {
+    axios.put(`https://api-sandbox.starlingbank.com/api/v2/account/${accountUid}/savings-goals`, headers, {
         "name": theName,
         "currency": currency,
         "target": {
