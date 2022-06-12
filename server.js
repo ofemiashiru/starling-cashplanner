@@ -234,6 +234,7 @@ app.route('/dashboard')
                 const totalOut =  groupedOutFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
 
                 const monthlySaving = totalIn - totalOut;
+                const savingInPercent = `${(monthlySaving/totalIn) * 100}%`
 
                 //Daily Calculations
                 const remainder = monthlySaving % daysInMonth;
@@ -275,6 +276,8 @@ app.route('/dashboard')
                         <h2>Savings</h2>
 
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p>
+                        <p>You are saving ${savingInPercent} of this months income</p>
+                        
                         <p>DAILY SAVING ${formatCurrency(dailySaving)}</p> 
                         <p>LAST DAY OF MONTH ${formatCurrency(lastDay)}</p> 
                         
