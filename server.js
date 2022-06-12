@@ -297,9 +297,7 @@ app.route('/dashboard')
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p>
                         <p>You are saving approx. ${savingInPercent} of this months income</p>
 
-                        <p>DAILY SAVING ${formatCurrency(dailySaving)}</p> 
-                        <p>LAST DAY OF MONTH ${formatCurrency(lastDay)}</p> 
-
+                        <p>CALENDAR PLAN</p>
                         ${dailyPlan.map((item)=> `<p>${item.date}. ${item.day}</p> <p>${item.save}</p>`)}
                         
                         <form action="/dashboard/add-to-space" method='POST'> 
