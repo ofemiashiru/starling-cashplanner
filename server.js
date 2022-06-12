@@ -292,7 +292,7 @@ app.route('/dashboard')
 });
 
 app.route('/add-to-space')
-.post((req, res)=>{
+.post(isLoggedin, (req, res)=>{
 
     const spaceName = req.body.name;
     const accountUid = req.body.accountUid;
@@ -305,7 +305,15 @@ app.route('/add-to-space')
     
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
-    axios.put(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, headers, {
+    axios.put(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, 
+        {
+            headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `${tokenType} ${process.env.PERSONL_ACCESS_TOKEN}`
+            }
+        }, 
+        {
         "name": spaceName,
         "currency": currency,
         "target": {
