@@ -71,7 +71,7 @@ if(process.env.NODE_ENV === "production"){
 //Use urlencoded to get post request from forms
 app.use(express.urlencoded({ extended: true }));
 
-const endpoint_link = 'https://api-sandbox.starlingbank.com'
+const endpointLink = 'https://api-sandbox.starlingbank.com'
 
 app.route('/')
 .get((req, res)=>{
@@ -83,7 +83,7 @@ app.route('/')
 
 
 app.route('/auth')
-.get(passport.authenticate('oauth2', {scope:[], state:nonce}));
+.get(passport.authenticate('oauth2', {scope:['account:read'], state:nonce}));
 
 
 app.route('/auth/callback')
@@ -140,9 +140,9 @@ app.route('/dashboard')
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
     const endpoints = [
-        `${endpoint_link}/api/v2/account-holder`,
-        `${endpoint_link}/api/v2/identity/individual`,
-        `${endpoint_link}/api/v2/accounts`,
+        `${endpointLink}/api/v2/account-holder`,
+        `${endpointLink}/api/v2/identity/individual`,
+        `${endpointLink}/api/v2/accounts`,
     ];
 
     const allRequests = endpoints.map((link)=>{
@@ -168,7 +168,7 @@ app.route('/dashboard')
         const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
         console.log(firstOfTheMonth)
        
-        axios.get(`${endpoint_link}/api/v2/accounts/${accountUid}/balance`, headers)
+        axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
         
             const balance = result.data;
@@ -178,7 +178,7 @@ app.route('/dashboard')
             const displayBalance = formatCurrency(tCBalance.minorUnits)
 
 
-            axios.get(`${endpoint_link}/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
+            axios.get(`${endpointLink}/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
             .then((aResult) => {
                 
                 const feed = aResult.data.feedItems; //this is an array
@@ -280,20 +280,20 @@ app.route('/dashboard')
 app.route('/add-to-space')
 .post((req, res)=>{
 
-    const theName = req.body.name;
+    const spaceName = req.body.name;
     const accountUid = req.body.accountUid;
     const currency = req.body.currency;
     const amount = req.body.amount;
 
-    console.log(`${theName}\n${accountUid}\n${currency}`)
+    console.log(`${spaceName}\n${accountUid}\n${currency}`)
 
 
     const userInfo = req.user;
     
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
-    axios.put(`https://api-sandbox.starlingbank.com/api/v2/account/${accountUid}/savings-goals`, headers, {
-        "name": theName,
+    axios.put(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, headers, {
+        "name": spaceName,
         "currency": currency,
         "target": {
           "currency": currency,
