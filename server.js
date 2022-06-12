@@ -71,6 +71,8 @@ if(process.env.NODE_ENV === "production"){
 //Use urlencoded to get post request from forms
 app.use(express.urlencoded({ extended: true }));
 
+const endpoint_link = 'https://api-sandbox.starlingbank.com'
+
 app.route('/')
 .get((req, res)=>{
     res.send(`
@@ -138,9 +140,9 @@ app.route('/dashboard')
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
 
     const endpoints = [
-        'https://api-sandbox.starlingbank.com/api/v2/account-holder',
-        'https://api-sandbox.starlingbank.com/api/v2/identity/individual',
-        'https://api-sandbox.starlingbank.com/api/v2/accounts',
+        `${endpoint_link}/api/v2/account-holder`,
+        `${endpoint_link}/api/v2/identity/individual`,
+        `${endpoint_link}/api/v2/accounts`,
     ];
 
     const allRequests = endpoints.map((link)=>{
@@ -166,7 +168,7 @@ app.route('/dashboard')
         const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
         console.log(firstOfTheMonth)
        
-        axios.get(`https://api-sandbox.starlingbank.com/api/v2/accounts/${accountUid}/balance`, headers)
+        axios.get(`${endpoint_link}/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
         
             const balance = result.data;
@@ -176,7 +178,7 @@ app.route('/dashboard')
             const displayBalance = formatCurrency(tCBalance.minorUnits)
 
 
-            axios.get(`https://api-sandbox.starlingbank.com/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
+            axios.get(`${endpoint_link}/api/v2/feed/account/${accountUid}/category/${categoryUid}?changesSince=${firstOfTheMonth}`, headers)
             .then((aResult) => {
                 
                 const feed = aResult.data.feedItems; //this is an array
