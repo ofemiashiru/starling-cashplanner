@@ -12,6 +12,7 @@ const axios = require('axios');
 
 //this handles the state
 const crypto = require('crypto');
+const { header } = require('express/lib/request');
 let nonce = crypto.randomBytes(16).toString('base64');
 
 //Make the app use express
@@ -236,6 +237,15 @@ app.route('/dashboard')
                 const monthlySaving = totalIn - totalOut;
 
 
+                axios.get(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, headers)
+                .then((spaces)=>{
+
+                    console.log('SPACES\n' + spaces)
+
+                })
+                .catch((err)=>{
+                    console.error(err)
+                })
 
                 res.send(
                     `
