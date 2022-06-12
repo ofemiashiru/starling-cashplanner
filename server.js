@@ -301,7 +301,6 @@ app.route('/add-to-space')
 
     console.log(`${spaceName}\n${accountUid}\n${currency}`)
 
-
     const userInfo = req.user;
     
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
