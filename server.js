@@ -276,7 +276,7 @@ app.route('/dashboard')
                         <h2>Savings</h2>
 
                         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p>
-                        <p>You are saving ${savingInPercent} of this months income</p>
+                        <p>You are saving approx. ${savingInPercent} of this months income</p>
 
                         <p>DAILY SAVING ${formatCurrency(dailySaving)}</p> 
                         <p>LAST DAY OF MONTH ${formatCurrency(lastDay)}</p> 
