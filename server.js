@@ -180,8 +180,15 @@ app.route('/dashboard')
         //Dates
         const accountCreated = accounts[0].createdAt; //when the account was created
         const now = new Date();
-        const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
+        const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+
+        const getDaysInMonth = (year, month) => {
+            return new Date(year, month, 0).getDate();
+        }
+
         console.log(firstOfTheMonth)
+
+        console.log(getDaysInMonth(now.getFullYear(), now.getMonth()))
        
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
@@ -270,7 +277,9 @@ app.route('/dashboard')
 
                         <h2>Savings</h2>
 
-                        <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p> 
+                        <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p>
+                        <p>WEEKLY SAVING ${formatCurrency(monthlySaving)}</p>
+                        <p>DAILY SAVING ${formatCurrency(monthlySaving)}</p> 
                         
                         <form action="/dashboard/add-to-space" method='POST'> 
                             <input type='submit' value='Add to Savings'/> 
