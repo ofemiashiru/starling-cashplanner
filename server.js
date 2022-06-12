@@ -188,7 +188,7 @@ app.route('/dashboard')
 
         console.log(firstOfTheMonth)
 
-        console.log(getDaysInMonth(now.getFullYear(), 1))
+        console.log(getDaysInMonth(now.getFullYear(), 2))
        
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
