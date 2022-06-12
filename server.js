@@ -55,6 +55,8 @@ passport.use(new OAuth2Strategy({
   }
 ));
 
+const endpointLink = 'https://api-sandbox.starlingbank.com'
+
 passport.serializeUser((user, done)=>{
     done(null, user);
 });
@@ -71,7 +73,6 @@ if(process.env.NODE_ENV === "production"){
 //Use urlencoded to get post request from forms
 app.use(express.urlencoded({ extended: true }));
 
-const endpointLink = 'https://api-sandbox.starlingbank.com'
 
 app.route('/')
 .get((req, res)=>{
