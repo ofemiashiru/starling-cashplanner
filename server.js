@@ -84,7 +84,20 @@ app.route('/')
 
 
 app.route('/auth')
-.get(passport.authenticate('oauth2', {scope:[], state:nonce}));
+.get(passport.authenticate('oauth2', 
+    {
+        scope:[
+            'account:read', 'account-list:read', 
+            'account-identifier:read', 'account-holder-name:read', 
+            'account-holder-type:read', 'balance:read', 
+            'savings-goal:read', 'savings-goal:create', 
+            'savings-goal:delete', 'savings-goal-transfer:read', 
+            'savings-goal-transfer:create', 'savings-goal-transfer:delete', 
+            'space:read', 'transaction:read'
+        ], 
+        state:nonce
+    }
+));
 
 
 app.route('/auth/callback')
