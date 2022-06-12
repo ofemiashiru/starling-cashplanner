@@ -10,10 +10,10 @@ const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2');
 const axios = require('axios');
 
-//this handles the state
+//this handles the state/nonce
 const crypto = require('crypto');
-const { header } = require('express/lib/request');
-let nonce = crypto.randomBytes(16).toString('base64');
+// const { header } = require('express/lib/request');
+const nonce = crypto.randomBytes(16).toString('base64');
 
 //Make the app use express
 const app = express();
