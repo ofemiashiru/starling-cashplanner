@@ -246,8 +246,8 @@ app.route('/dashboard')
                 const textDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
                 const dailyPlan = [];
 
-                let firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-                let firstDateOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDate();
+                let firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
+                let firstDateOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getDate();
 
                 for(let i = 0; i < daysInMonth; i++){
 
