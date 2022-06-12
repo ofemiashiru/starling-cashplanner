@@ -310,7 +310,7 @@ app.route('/add-to-space')
             headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `${tokenType} ${process.env.PERSONL_ACCESS_TOKEN}`
+            "Authorization": `${userInfo.token_type} ${process.env.PERSONL_ACCESS_TOKEN}`
             }
         }, 
         {
