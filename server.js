@@ -177,11 +177,6 @@ app.route('/dashboard')
         const now = new Date();
         const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 
-        const getDaysInMonth = (year, month) => {
-            return new Date(year, month, 0).getDate();
-        }
-        const daysInMonth = getDaysInMonth(now.getFullYear(), now.getMonth())
-
        
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
@@ -237,9 +232,33 @@ app.route('/dashboard')
                 const savingInPercent = `${Math.round((monthlySaving/totalIn) * 100)}%`
 
                 //Daily Calculations
+                const getDaysInMonth = (year, month) => {
+                    return new Date(year, month, 0).getDate();
+                }
+
+                const daysInMonth = getDaysInMonth(now.getFullYear(), now.getMonth())
+
                 const remainder = monthlySaving % daysInMonth;
                 let dailySaving = (monthlySaving - remainder)/daysInMonth;
                 const lastDay = dailySaving + remainder;
+                
+                //Calendar - Daily Plan
+                const textDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+                const dailyPlan = [];
+
+                let firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+                let firstDateOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDate();
+
+                for(let i = 0; i < daysInMonth; i++){
+
+                    if(firstDateOfMonth === daysInMonth){
+                      dailySaving = dailySaving + remainder;
+                    }
+                    const cashOutput = formatCurrency(dailySaving);
+                    dailyPlan.push({date:firstDateOfMonth, day:textDays[firstDayOfMonth % textDays.length], save:cashOutput});
+                    firstDayOfMonth++
+                    firstDateOfMonth++
+                  }
 
 
                 axios.get(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, headers)
@@ -280,6 +299,8 @@ app.route('/dashboard')
 
                         <p>DAILY SAVING ${formatCurrency(dailySaving)}</p> 
                         <p>LAST DAY OF MONTH ${formatCurrency(lastDay)}</p> 
+
+                        ${dailyPlan.map((item)=> `<p>${item.date}. ${item.day}</p> <p>${item.save}</p>`)}
                         
                         <form action="/dashboard/add-to-space" method='POST'> 
                             <input type='submit' value='Add to Savings'/> 
