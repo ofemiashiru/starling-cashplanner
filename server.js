@@ -229,7 +229,8 @@ app.route('/dashboard')
                 const totalOut =  groupedOutFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
 
                 const monthlySaving = totalIn - totalOut;
-                const savingInPercent = `${monthlySaving/totalIn}%`
+                const percentCalc = (monthlySaving/totalIn) * 100
+                const savingInPercent = `${percentCalc.toFixed(2)}%`
 
                 //Daily Calculations
                 const getDaysInMonth = (year, month) => {
