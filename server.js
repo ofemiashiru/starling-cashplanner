@@ -96,7 +96,8 @@ app.route('/auth')
         ], 
         state:nonce
     }
-));
+))
+
 
 
 app.route('/auth/callback')
