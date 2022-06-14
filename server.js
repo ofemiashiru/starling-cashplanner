@@ -230,7 +230,7 @@ app.route('/dashboard')
 
                 const monthlySaving = totalIn - totalOut;
                 const percentCalc = (monthlySaving/totalIn) * 100
-                const savingInPercent = `${percentCalc.toFixed(2)}%`
+                const savingInPercent = `${percentCalc.toFixed(2)}%` 
 
                 //Daily Calculations
                 const getDaysInMonth = (year, month) => {
