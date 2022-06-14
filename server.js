@@ -279,7 +279,7 @@ app.route('/dashboard')
                             Account type: ${accountHolder.accountHolderType}
                         </p>
                         <h2>
-                            You have ${displayBalance} to spend
+                            Current Balance: ${displayBalance}
                         </h2>
         
                         <h2>Money In</h2>
