@@ -229,7 +229,7 @@ app.route('/dashboard')
                 const totalOut =  groupedOutFeed.reduce(function (acc, obj) { return acc + obj.amount; }, 0);
 
                 const monthlySaving = totalIn - totalOut;
-                const savingInPercent = `${Math.round((monthlySaving/totalIn) * 100 )}%`
+                const savingInPercent = `${monthlySaving/totalIn}%`
 
                 //Daily Calculations
                 const getDaysInMonth = (year, month) => {
@@ -257,7 +257,7 @@ app.route('/dashboard')
                     dailyPlan.push({date:firstDateOfMonth, day:textDays[firstDayOfMonth % textDays.length], save:cashOutput});
                     firstDayOfMonth++
                     firstDateOfMonth++
-                  }
+                }
 
 
                 axios.get(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, headers)
