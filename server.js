@@ -10,12 +10,16 @@ const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2');
 const axios = require('axios');
 
+const ejs = require("ejs");
+
+
 //this handles the state/nonce
 const crypto = require('crypto');
 const nonce = crypto.randomBytes(16).toString('base64');
 
 //Make the app use express
 const app = express();
+app.set('view engine', 'ejs');
 app.set('trust proxy', 1);
 
 app.use(session({
@@ -75,10 +79,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.route('/')
 .get((req, res)=>{
-    res.send(`
-        <h1>Welcome to my App</h1> 
-        <a href="/auth">Authenticate with Starling Bank</a>
-    `);
+
+    res.render('login');
 })
 
 
