@@ -73,6 +73,8 @@ if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname,"/client/build")));
 }
 
+app.use(express.static("public"));
+
 //Use urlencoded to get post request from forms
 app.use(express.urlencoded({ extended: true }));
 
@@ -81,6 +83,7 @@ app.route('/')
 .get((req, res)=>{
 
     res.render('login');
+
 })
 
 

@@ -1,3 +1,8 @@
+html, body {
+	overflow-x: hidden;
+	height: 100%;
+  }
+
 body {
   padding: 0;
   margin: 0;
@@ -20,5 +25,4 @@ body {
 .footer p {
 	margin-top: 25px;
 	font-size: 1rem;
-  color: rgb(79,110,135);
 }
