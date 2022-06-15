@@ -197,7 +197,7 @@ app.route('/dashboard')
             .then((aResult) => {
                 
                 const feed = aResult.data.feedItems; //this is an array
-                console.log(feed);
+                // console.log(feed);
 
 
                 // Groups Transaction Feed items by spending category, direction and status
@@ -267,15 +267,15 @@ app.route('/dashboard')
                 }
 
 
-                axios.get(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, headers)
-                .then((spaces)=>{
+                // axios.get(`${endpointLink}/api/v2/account/${accountUid}/savings-goals`, headers)
+                // .then((spaces)=>{
 
-                    console.log('SPACES\n' + spaces)
+                //     console.log('SPACES\n' + spaces)
 
-                })
-                .catch((err)=>{
-                    console.error(err)
-                })
+                // })
+                // .catch((err)=>{
+                //     console.error(err)
+                // })
 
                 res.render('dashboard', {
                     identity: identity, accountHolder: accountHolder, displayBalance:displayBalance,
