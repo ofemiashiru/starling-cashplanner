@@ -277,46 +277,53 @@ app.route('/dashboard')
                     console.error(err)
                 })
 
-                res.send(
-                    `
-                        <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
-                        <h2>${identity.email}</h2>
-                        <p>
-                            Account type: ${accountHolder.accountHolderType}
-                        </p>
-                        <h2>
-                            Current Balance: ${displayBalance}
-                        </h2>
+                res.render('dashboard', {
+                    identity: identity, accountHolder: accountHolder, displayBalance:displayBalance,
+                    groupedInFeed:groupedInFeed, groupedOutFeed:groupedOutFeed, 
+                    totalIn:totalIn, totalOut:totalOut, monthlySaving:monthlySaving,
+                    dailyPlan:dailyPlan, savingInPercent:savingInPercent, formatCurrency:formatCurrency
+                });
+
+                // res.send(
+                //     `
+                //         <h1>Hello ${identity.title} ${identity.firstName} ${identity.lastName}</h1>
+                //         <h2>${identity.email}</h2>
+                //         <p>
+                //             Account type: ${accountHolder.accountHolderType}
+                //         </p>
+                //         <h2>
+                //             Current Balance: ${displayBalance}
+                //         </h2>
         
-                        <h2>Money In</h2>
-                        ${groupedInFeed.map((item) => `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
+                //         <h2>Money In</h2>
+                //         ${groupedInFeed.map((item) => `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
 
-                        <h2>Money Out</h2>
-                        ${groupedOutFeed.map((item) => `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
+                //         <h2>Money Out</h2>
+                //         ${groupedOutFeed.map((item) => `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
 
-                        <h2>Totals</h2>
-                        <p>MONTHLY IN ${formatCurrency(totalIn)}</p>
-                        <p>MONTHLY OUT ${formatCurrency(totalOut)}</p>
+                //         <h2>Totals</h2>
+                //         <p>MONTHLY IN ${formatCurrency(totalIn)}</p>
+                //         <p>MONTHLY OUT ${formatCurrency(totalOut)}</p>
 
-                        <h2>Savings</h2>
+                //         <h2>Savings</h2>
 
-                        <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p>
-                        <p>You are saving approx. ${savingInPercent} of this months income</p>
+                //         <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p>
+                //         <p>You are saving approx. ${savingInPercent} of this months income</p>
 
-                        <p>CALENDAR PLAN</p>
-                        ${dailyPlan.map((item)=> `<p>${item.date}. ${item.day}</p> <p>${item.save}</p>`)}
+                //         <p>CALENDAR PLAN</p>
+                //         ${dailyPlan.map((item)=> `<p>${item.date}. ${item.day}</p> <p>${item.save}</p>`)}
                         
-                        <form action="/dashboard/add-to-space" method='POST'> 
-                            <input type='submit' value='Add to Savings'/> 
-                            <input type='hidden' name='name' value='Savings' />
-                            <input type='hidden' name='accountUid' value='${accountUid}' />
-                            <input type='hidden' name='currency' value='${tCBalance.currency}' />
-                            <input type='hidden' name='amount' value='${monthlySaving}' />
-                        </form>
-                        <a href="/auth/logout">Log Out</a>
+                //         <form action="/dashboard/add-to-space" method='POST'> 
+                //             <input type='submit' value='Add to Savings'/> 
+                //             <input type='hidden' name='name' value='Savings' />
+                //             <input type='hidden' name='accountUid' value='${accountUid}' />
+                //             <input type='hidden' name='currency' value='${tCBalance.currency}' />
+                //             <input type='hidden' name='amount' value='${monthlySaving}' />
+                //         </form>
+                //         <a href="/auth/logout">Log Out</a>
                         
-                    `
-                );
+                //     `
+                // );
 
             })
             .catch((err)=>{

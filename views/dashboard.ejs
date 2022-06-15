@@ -1,5 +1,39 @@
 <%- include("partials/header"); -%>
     <h1>Dashboard</h1>
+    <h1>Hello <%= identity.title%> <%=i dentity.firstName %> <%= identity.lastName %></h1>
+    <h2>${identity.email}</h2>
+    <p>
+        Account type: ${accountHolder.accountHolderType}
+    </p>
+    <h2>
+        Current Balance: ${displayBalance}
+    </h2>
 
+    <h2>Money In</h2>
+    ${groupedInFeed.map((item) => `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
+
+    <h2>Money Out</h2>
+    ${groupedOutFeed.map((item) => `<p>${item.spendingCategory} ${formatCurrency(item.amount)}</p>`)}
+
+    <h2>Totals</h2>
+    <p>MONTHLY IN ${formatCurrency(totalIn)}</p>
+    <p>MONTHLY OUT ${formatCurrency(totalOut)}</p>
+
+    <h2>Savings</h2>
+
+    <p>MONTHLY SAVING ${formatCurrency(monthlySaving)}</p>
+    <p>You are saving approx. ${savingInPercent} of this months income</p>
+
+    <p>CALENDAR PLAN</p>
+    ${dailyPlan.map((item)=> `<p>${item.date}. ${item.day}</p> <p>${item.save}</p>`)}
+    
+    <form action="/dashboard/add-to-space" method='POST'> 
+        <input type='submit' value='Add to Savings'/> 
+        <input type='hidden' name='name' value='Savings' />
+        <input type='hidden' name='accountUid' value='${accountUid}' />
+        <input type='hidden' name='currency' value='${tCBalance.currency}' />
+        <input type='hidden' name='amount' value='${monthlySaving}' />
+    </form>
+    <a href="/auth/logout">Log Out</a>
 
 <%- include("partials/footer"); -%>
