@@ -10,10 +10,10 @@
     </h2>
 
     <h2>Money In</h2>
-    <%= groupedInFeed.map((item) => `<p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>`)}
+    <% groupedInFeed.map((item) => `<p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>`) %>
 
     <h2>Money Out</h2>
-    <%= groupedOutFeed.map((item) => `<p><%= item.spendingCategory %> <%= formatCurrency(item.amount)}</p>`) %>
+    <% groupedOutFeed.map((item) => `<p><%= item.spendingCategory %> <%= formatCurrency(item.amount)}</p>`) %>
 
     <h2>Totals</h2>
     <p>MONTHLY IN <%= formatCurrency(totalIn) %></p>
@@ -25,7 +25,7 @@
     <p>You are saving approx. <%= savingInPercent %> of this months income</p>
 
     <p>CALENDAR PLAN</p>
-    <%= dailyPlan.map((item)=> `<p><%= item.date %>. <%= item.day %></p> <p><%= item.save %></p>`)}
+    <% dailyPlan.map((item)=> `<p><%= item.date %>. <%= item.day %></p> <p><%= item.save %></p>`) %>
     
     <form action="/dashboard/add-to-space" method='POST'> 
         <input type='submit' value='Add to Savings'/> 
