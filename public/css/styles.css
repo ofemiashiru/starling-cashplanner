@@ -44,6 +44,9 @@ h4{
 	cursor: pointer;
 }
 
+.cash-title {
+	margin:0;
+}
 
 .btn {
 	border:1px solid black;
