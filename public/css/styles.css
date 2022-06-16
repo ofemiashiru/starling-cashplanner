@@ -25,10 +25,11 @@ h4{
   } */
   
 .flex-container {
-	display: flex;
+	display: grid;
 	flex-direction: row;
 	font-size: 1.4rem;
 	text-align: center;
+	grid-gap:5px;
 }
 
 .flex-item {
