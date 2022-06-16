@@ -18,7 +18,7 @@
 
         </div>
         <div class="flex-item">
-            <i class="fas fa-cash-register fa-2x"></i>
+            <i class="fas fa-cash-register fa-3x"></i>
             <p><%= formatCurrency(totalOut) %></p>
 
         </div>
@@ -31,12 +31,12 @@
     </div>
     <h2>Money In</h2>
     <% groupedInFeed.forEach((item)=> { %>
-        <p><%= item.spendingCategory %> &emsp; <%= formatCurrency(item.amount) %></p>
+        <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
     <% }) %>
 
     <h2>Money Out</h2>
     <% groupedOutFeed.forEach((item)=> { %>
-        <p><%= item.spendingCategory %> &emsp; <%= formatCurrency(item.amount) %></p>
+        <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
     <% }) %>
     
 
