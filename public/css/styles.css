@@ -27,8 +27,8 @@ h4{
 .flex-container {
 	display: flex;
 	flex-direction: row;
-	font-size: 30px;
-	text-align: center;
+	font-size: 10px;
+	/* text-align: center; */
 }
 
 .flex-item {
