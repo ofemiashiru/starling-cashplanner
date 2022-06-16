@@ -33,7 +33,7 @@ h4{
 
 .flex-item {
 	/* background-color: dodgerblue; */
-	padding: 10px;
+	padding: 5px;
 	flex: 50%;
 	border:1px solid black;
 	border-radius: 10px;
