@@ -13,6 +13,8 @@ function openSaving() {
     document.getElementById("Saving").style.height = "90%";
 }
   
+
+
 function closeIncome() {
     document.getElementById("Income").style.height = "0";
 }

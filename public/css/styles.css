@@ -69,6 +69,7 @@ h4{
 	z-index: 1;
 	top: 0;
 	left: 0;
+	padding:20px;
 	background-color:aqua;
 	overflow-x: hidden;
 	transition: 0.5s;
