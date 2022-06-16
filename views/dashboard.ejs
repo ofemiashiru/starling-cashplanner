@@ -11,6 +11,11 @@
         Current Balance: <%= displayBalance %>
     </h2>
 
+    <div class="flex-container">
+        <div class="flex-item-left">1</div>
+        <div class="flex-item-right">2</div>
+        <div class="flex-item-right">2</div>
+    </div>
     <h2>Money In</h2>
     <% groupedInFeed.forEach((item)=> { %>
         <p><%= item.spendingCategory %> &emsp; <%= formatCurrency(item.amount) %></p>
