@@ -1,10 +1,12 @@
 <%- include("partials/header"); -%>
-    <h4>Hello <%= identity.title %> <%= identity.firstName %> <%= identity.lastName %></h4>
+    
     <i class="fas fa-user fa-5x"></i>
-    <h2><%= identity.email %></h2>
     <p>
         Account type: <%= accountHolder.accountHolderType %>
     </p>
+    <h3>Hello <%= identity.title %> <%= identity.firstName %> <%= identity.lastName %></h3>
+    <h4><%= identity.email %></h4>
+
     <h2>
         Current Balance: <%= displayBalance %>
     </h2>
