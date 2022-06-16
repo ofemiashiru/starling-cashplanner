@@ -13,8 +13,14 @@ function openSaving() {
     document.getElementById("Saving").style.height = "250px";
 }
   
-function closeNav() {
+function closeIncome() {
     document.getElementById("Income").style.height = "0";
+}
+
+function closeOutgoing() {
     document.getElementById("Outgoing").style.height = "0";
+}
+
+function closeSaving() {
     document.getElementById("Saving").style.height = "0";
 }
