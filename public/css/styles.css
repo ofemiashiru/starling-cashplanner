@@ -28,7 +28,7 @@ h4{
 	display: flex;
 	flex-direction: row;
 	font-size: 1.4rem;
-	/* text-align: center; */
+	text-align: center;
 }
 
 .flex-item {
