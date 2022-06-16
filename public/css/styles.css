@@ -26,7 +26,8 @@ h4{
   
 .flex-container {
 	display: grid;
-	flex-direction: row;
+	/* flex-direction: row; */
+	grid-template-rows: auto auto auto;
 	font-size: 1.4rem;
 	text-align: center;
 	grid-gap:5px;
