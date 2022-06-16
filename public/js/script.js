@@ -14,5 +14,7 @@ function openSaving() {
 }
   
 function closeNav() {
-    document.getElementById("mySidenav").style.height = "0";
+    document.getElementById("Income").style.height = "0";
+    document.getElementById("Outgoing").style.height = "0";
+    document.getElementById("Saving").style.height = "0";
 }
