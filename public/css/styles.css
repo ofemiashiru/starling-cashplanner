@@ -62,7 +62,7 @@ h4{
 
 
 
-.page {
+.slide {
 	height: 0;
 	width: 100%;
 	position: fixed;
@@ -75,7 +75,7 @@ h4{
 
 }
   
-.page a {
+.slide a {
 	padding: 8px 8px 8px 32px;
 	text-decoration: none;
 	font-size: 25px;
@@ -84,11 +84,11 @@ h4{
 	transition: 0.3s;
 }
   
-.page a:hover {
+.slide a:hover {
 	color: #f1f1f1;
 }
   
-.page .closebtn {
+.slide .closebtn {
 	position: absolute;
 	top: 0;
 	right: 25px;
