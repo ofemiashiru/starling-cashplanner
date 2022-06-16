@@ -73,6 +73,8 @@ h4{
 	overflow-x: hidden;
 	transition: 0.5s;
 
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
   
 .slide a {
