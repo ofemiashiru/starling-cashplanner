@@ -35,9 +35,9 @@ h4{
 	/* background-color: dodgerblue; */
 	padding: 5px;
 	flex: 50%;
-	border:1px solid black;
 	border-radius: 10px;
 	margin: 10px;
+	background-color: chocolate;
 }
 
 .flex-item:hover{
