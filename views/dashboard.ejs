@@ -12,41 +12,52 @@
     </h2>
 
     <div class="flex-container">
-        <div class="flex-item">
+        <div class="flex-item income-btn" onclick="openIncome()">
             <i class="fas fa-money-bill fa-2x"></i> 
             <p class="cash-title"><%= formatCurrency(totalIn) %></p>
 
         </div>
-        <div class="flex-item">
+        <div class="flex-item outgoing-btn" onclick="openOutgoing()">
             <i class="fas fa-cash-register fa-2x"></i>
             <p class="cash-title"><%= formatCurrency(totalOut) %></p>
 
         </div>
 
-        <div class="flex-item">
+        <div class="flex-item saving-btn"  onclick="openSaving()">
             <i class="fas fa-piggy-bank fa-2x"></i>
             <p class="cash-title"><%= formatCurrency(monthlySaving) %></p>
         
         </div>
     </div>
-    <h2>Money In</h2>
-    <% groupedInFeed.forEach((item)=> { %>
-        <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
-    <% }) %>
-
-    <h2>Money Out</h2>
-    <% groupedOutFeed.forEach((item)=> { %>
-        <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
-    <% }) %>
     
+    <div id="Income" class="income-page slide">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-    <h2>Totals</h2>
+        <h2>Income</h2>
+        <% groupedInFeed.forEach((item)=> { %>
+            <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
+        <% }) %>
+
+    </div>
+
+    <div id="Outgoing" class="outgoing-page slide">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h2>Outgoing</h2>
+        <% groupedOutFeed.forEach((item)=> { %>
+            <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
+        <% }) %>
+
+    </div>
     
+    <div id="Saving" class="saving-page slide">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h2>Savings</h2>
+
+        <p>You are saving approx. <%= savingInPercent %> of this months income</p>
+
+    </div>
+
     
-
-    <h2>Savings</h2>
-
-    <p>You are saving approx. <%= savingInPercent %> of this months income</p>
 
     <p>CALENDAR PLAN</p>
 
