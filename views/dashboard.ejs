@@ -10,12 +10,12 @@
 
     <h2>Money In</h2>
     <% groupedInFeed.forEach((item)=> { %>
-        <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
+        <p><%= item.spendingCategory %> &emsp; <%= formatCurrency(item.amount) %></p>
     <% }) %>
 
     <h2>Money Out</h2>
     <% groupedOutFeed.forEach((item)=> { %>
-        <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
+        <p><%= item.spendingCategory %> &emsp; <%= formatCurrency(item.amount) %></p>
     <% }) %>
     
 
