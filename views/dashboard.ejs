@@ -12,20 +12,20 @@
     </h2>
 
     <div class="flex-container">
-        <div class="flex-item-left">
+        <div class="flex-item-right">
 
-            1
+            <p>MONTHLY IN <%= formatCurrency(totalIn) %></p>
 
         </div>
         <div class="flex-item-right">
 
-            2
+            <p>MONTHLY OUT <%= formatCurrency(totalOut) %></p>
 
         </div>
 
         <div class="flex-item-right">
             
-            3
+            <p>MONTHLY SAVING <%= formatCurrency(monthlySaving) %></p>
         
         </div>
     </div>
@@ -41,12 +41,11 @@
     
 
     <h2>Totals</h2>
-    <p>MONTHLY IN <%= formatCurrency(totalIn) %></p>
-    <p>MONTHLY OUT <%= formatCurrency(totalOut) %></p>
+    
+    
 
     <h2>Savings</h2>
 
-    <p>MONTHLY SAVING <%= formatCurrency(monthlySaving) %></p>
     <p>You are saving approx. <%= savingInPercent %> of this months income</p>
 
     <p>CALENDAR PLAN</p>
