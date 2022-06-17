@@ -118,12 +118,18 @@ h4{
   
 .breakdown > div {
 	background-color: rgba(255, 255, 255, 0.8);
-	text-align: center;
+	/* text-align: center; */
 	padding: 20px 0;
 	font-size: 30px;
 }
 
+.breakdown > .item{
+	text-align: left;
+}
 
+.breakdown > .amount{
+	text-align: right;
+}
 
 .footer-padding {
 	padding: 60px;
