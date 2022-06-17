@@ -36,8 +36,9 @@
     
     <div id="Income" class="income-page slide">
         <a href="javascript:void(0)" class="closebtn" onclick="closeIncome()">&times;</a>
-        <h2>Income</h2>
-        
+
+        <h2 class="page-header">Income</h2>
+
         <div class="breakdown">
             <% groupedInFeed.forEach((item)=> { %>
                 <div class="item"><%= item.spendingCategory %></div>
@@ -50,9 +51,7 @@
     <div id="Outgoing" class="outgoing-page slide">
         <a href="javascript:void(0)" class="closebtn" onclick="closeOutgoing()">&times;</a>
 
-
-
-        <h2>Outgoing</h2>
+        <h2 class="page-header">Outgoing</h2>
 
         <div class="breakdown">
             <% groupedOutFeed.forEach((item)=> { %>
@@ -66,7 +65,7 @@
     
     <div id="Saving" class="saving-page slide">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSaving()">&times;</a>
-        <h2>Savings</h2>
+        <h2 class="page-header" >Savings</h2>
 
         <p>You are saving approx. <%= savingInPercent %> of this months income</p>
 
