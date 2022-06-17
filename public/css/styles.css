@@ -114,12 +114,13 @@ h4{
 	grid-gap: 10px;
 	background-color: #2196F3;
 	padding: 10px;
+	margin:0 auto;
 	/* width: 80%; */
 }
   
 .breakdown > div {
 	background-color: rgba(255, 255, 255, 0.8);
-	margin:0 auto;
+	
 	padding: 20px 0;
 	font-size: 30px;
 }
