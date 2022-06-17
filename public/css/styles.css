@@ -107,14 +107,14 @@ h4{
 }
 
 
+
+
 .breakdown {
 	display: grid;
 	grid-template-columns: auto auto;
-	/* grid-template-rows: 100px 300px 200px; */
 	grid-gap: 10px;
-	background-color: #2196F3;
 	padding: 10px;
-	margin:0 auto;
+	
 	/* width: 80%; */
 }
   
