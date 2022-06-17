@@ -52,15 +52,16 @@
     <div id="Outgoing" class="outgoing-page slide">
         <a href="javascript:void(0)" class="closebtn" onclick="closeOutgoing()">&times;</a>
 
-        <div class="breakdown">
-            <div class="item1">1</div>
-            <div class="item2">2</div>
-        </div>
+
 
         <h2>Outgoing</h2>
-        <% groupedOutFeed.forEach((item)=> { %>
-            <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
-        <% }) %>
+
+        <div class="breakdown">
+            <% groupedOutFeed.forEach((item)=> { %>
+                <div class="item"><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></div>
+            <% }) %>
+        </div>
+
 
     </div>
     
