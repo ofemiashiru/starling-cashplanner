@@ -1,16 +1,16 @@
 
 function openIncome() {
-    document.getElementById("Income").style.height = "70%";
+    document.getElementById("Income").style.height = "65%";
 }
 
 
 function openOutgoing() {
-    document.getElementById("Outgoing").style.height = "70%";
+    document.getElementById("Outgoing").style.height = "65%";
 }
 
 
 function openSaving() {
-    document.getElementById("Saving").style.height = "70%";
+    document.getElementById("Saving").style.height = "65%";
 }
   
 
