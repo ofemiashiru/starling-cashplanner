@@ -42,7 +42,7 @@
         <div class="breakdown">
             <% groupedInFeed.forEach((item)=> { %>
                 <div class="item"><%= item.spendingCategory %></div>
-                <div class="amount"> <%= formatCurrency(item.amount) %></div>
+                <div class="amount"> <%= (item.amount/totalIn)*100 %> <%= formatCurrency(item.amount) %></div>
             <% }) %>
         </div>
 
