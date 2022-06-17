@@ -58,7 +58,8 @@
 
         <div class="breakdown">
             <% groupedOutFeed.forEach((item)=> { %>
-                <div class="item"><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></div>
+                <div class="item"><%= item.spendingCategory %></div>
+                <div class="amount"><%= formatCurrency(item.amount) %></div>
             <% }) %>
         </div>
 
