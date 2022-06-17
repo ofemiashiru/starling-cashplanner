@@ -37,6 +37,11 @@
     <div id="Income" class="income-page slide">
         <a href="javascript:void(0)" class="closebtn" onclick="closeIncome()">&times;</a>
 
+        <div class="breakdown">
+            <div class="item1">1</div>
+            <div class="item2">2</div>
+        </div>
+
         <h2>Income</h2>
         <% groupedInFeed.forEach((item)=> { %>
             <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
@@ -46,6 +51,12 @@
 
     <div id="Outgoing" class="outgoing-page slide">
         <a href="javascript:void(0)" class="closebtn" onclick="closeOutgoing()">&times;</a>
+
+        <div class="breakdown">
+            <div class="item1">1</div>
+            <div class="item2">2</div>
+        </div>
+
         <h2>Outgoing</h2>
         <% groupedOutFeed.forEach((item)=> { %>
             <p><%= item.spendingCategory %> <%= formatCurrency(item.amount) %></p>
