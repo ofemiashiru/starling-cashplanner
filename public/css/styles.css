@@ -120,16 +120,19 @@ h4{
 	background-color: rgba(255, 255, 255, 0.8);
 	padding: 20px 0;
 	font-size: 30px;
+	margin: 0 0 10px;
 }
 
 .breakdown > .item{
 	text-align: left;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
 }
 
 .breakdown > .amount{
 	text-align: right;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
 }
 
 .footer-padding {
