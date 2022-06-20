@@ -139,7 +139,7 @@ h4{
 canvas{
 	width: 350px !important;
 	height: 350px !important;
-	text-align: center;
+	margin: 0 auto;
 }
 
 .footer-padding {
