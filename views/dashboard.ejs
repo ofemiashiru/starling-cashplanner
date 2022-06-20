@@ -75,10 +75,17 @@
 
         <p>You are saving approx. <%= savingInPercent %> of this months income</p>
 
+        <p>CALENDAR PLAN</p>
+
+        <% dailyPlan.forEach((item)=> { %>
+            <p><%= item.date %> <%= item.day %></p>
+            <p><%= item.save %></p>
+        <% }) %>
+
     </div>
 
     <div>
-        <canvas style="width:100px;" id="myChart"></canvas>
+        <canvas id="myChart"></canvas>
     </div>
 
     <script>
@@ -110,13 +117,6 @@
             config  
         );
     </script>
-
-    <p>CALENDAR PLAN</p>
-
-    <% dailyPlan.forEach((item)=> { %>
-        <p><%= item.date %> <%= item.day %></p>
-        <p><%= item.save %></p>
-    <% }) %>
   
 
 <%- include("partials/footer"); -%>
