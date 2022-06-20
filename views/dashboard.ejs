@@ -87,9 +87,8 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
-<%-
+
     <script>
-        let x = <%= identity %>
         const data = {
             labels: [
                 'Red',
@@ -122,6 +121,5 @@
             config  
         );
     </script>
-  -%>
 
 <%- include("partials/footer"); -%>
