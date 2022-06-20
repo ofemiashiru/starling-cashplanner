@@ -19,7 +19,7 @@ h4{
 	font-weight: normal;
 }
 
-.login-frame{
+.login-frame > h4, a{
 	text-align: center;
 }
 
