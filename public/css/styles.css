@@ -138,7 +138,7 @@ h4{
 
 canvas{
 	width: 500px !important;
-	height: 500px !important;
+	/* height: 500px !important; */
 }
 
 .footer-padding {
