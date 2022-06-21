@@ -75,6 +75,15 @@
 
         <p>You are saving approx. <%= savingInPercent %> of this months income</p>
 
+        <div class="breakdown">
+
+                <div class="item">Saving</div>
+                <div class="amount">
+                    <span><%= savingInPercent %> </span> | 
+                    <%= formatCurrency(monthlySaving) %>
+                </div>
+        </div>
+
         <p>CALENDAR PLAN</p>
 
         <% dailyPlan.forEach((item)=> { %>
