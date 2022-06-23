@@ -96,9 +96,9 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
-    <%= let x = groupedOutFeed.map((item)=> item.spendingCategory) %>
+
     <script>
-        let labels = '<%= x %>' 
+        let labels = ['<%= groupedOutFeed.map((item)=> item.spendingCategory) %>']
         const data = {
             labels: [''],
             datasets: [{
