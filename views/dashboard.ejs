@@ -98,7 +98,7 @@
     </div>
     <%= let x = groupedOutFeed.map((item)=> item.spendingCategory) %>
     <script>
-        let labels = '<% x %>' 
+        let labels = '<%= x %>' 
         const data = {
             labels: [''],
             datasets: [{
