@@ -98,9 +98,9 @@
     </div>
 
     <script>
-        
+        let labels = '<%= groupedOutFeed.map((item)=> item.spendingCategory) %>'
         const data = {
-            labels: ['<%= groupedOutFeed.map((item)=> [item.spendingCategory]) %>'],
+            labels: [''],
             datasets: [{
                 label: 'My First Dataset',
                 data: [300, 50, 100],
@@ -126,7 +126,7 @@
             config  
         );
 
-        console.log(data.labels)
+        console.log(labels)
     </script>
 
 <%- include("partials/footer"); -%>
