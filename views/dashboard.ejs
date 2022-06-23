@@ -98,7 +98,7 @@
     </div>
 
     <script>
-        let labels = ['<%= groupedOutFeed.map((item)=> item.spendingCategory).split(" ") %>']
+        let labels = '<%= groupedOutFeed.map((item)=> item.spendingCategory).split(",") %>'
         const data = {
             labels: [''],
             datasets: [{
