@@ -100,7 +100,7 @@
     <script>
         
         const data = {
-            labels: ['<%= groupedOutFeed.map((item)=> item.spendingCategory).toString() %>'],
+            labels: ['<%= groupedOutFeed.map((item)=> item.spendingCategory) %>'],
             datasets: [{
                 label: 'My First Dataset',
                 data: [300, 50, 100],
@@ -125,6 +125,8 @@
             document.getElementById('myChart'),
             config  
         );
+
+        console.log(data.labels)
     </script>
 
 <%- include("partials/footer"); -%>
