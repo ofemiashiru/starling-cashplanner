@@ -100,7 +100,7 @@
     <script>
         let labels = '<%= groupedOutFeed.map((item)=> item.spendingCategory) %>'
         const data = {
-            labels: [''],
+            labels: labels.split(","),
             datasets: [{
                 label: 'My First Dataset',
                 data: [300, 50, 100],
@@ -126,7 +126,7 @@
             config  
         );
 
-        console.log(labels.split(","))
+        console.log()
     </script>
 
 <%- include("partials/footer"); -%>
