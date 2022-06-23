@@ -96,13 +96,15 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
-    
+    <%let test = 'Green' %>
     <script>
+        let c = <%= test %>;
         const data = {
             labels: [
                 'Red',
                 'Blue',
-                'Yellow'
+                'Yellow',
+                c
 
             ],
             datasets: [{
