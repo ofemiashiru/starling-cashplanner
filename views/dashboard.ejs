@@ -99,11 +99,12 @@
 
     <script>
         let labels = '<%= groupedOutFeed.map((item)=> item.spendingCategory) %>'
+        let values = '<%= groupedOutFeed.map((item)=> item.amount) %>'
         const data = {
             labels: labels.split(","),
             datasets: [{
                 label: 'My First Dataset',
-                data: [300, 50, 100],
+                data: labels.split(","),
                 backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',
