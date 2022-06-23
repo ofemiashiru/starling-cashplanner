@@ -96,11 +96,11 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
-    <%let test = "Green" %>
+
     <script>
-        let c = "<%= test %>";
+
         const data = {
-            labels: ["<%= groupedInFeed %>"],
+            labels: ["<%= groupedInFeed.map((item)=> item.spendingCategory) %>"],
             datasets: [{
                 label: 'My First Dataset',
                 data: [300, 50, 100],
