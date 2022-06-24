@@ -100,7 +100,9 @@
     <script>
         let labelStr = '<%= groupedOutFeed.map((item)=> item.spendingCategory) %>'
         let values = '<%= groupedOutFeed.map((item)=> item.amount) %>'
+        let saving = '<%= monthlySaving %>'
         let total = '<%= totalIn %>'
+
 
         const chooseRGB = (items) => {
             allColours = []
@@ -121,7 +123,7 @@
         let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2))
 
         const data = {
-            labels: labels,
+            labels: labels+'savings',
             datasets: [{
                 label: 'Cash Breakdown',
                 data: percents,
