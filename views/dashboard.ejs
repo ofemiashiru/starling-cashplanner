@@ -88,8 +88,7 @@
             <% dailyPlan.forEach((item)=> { %>
 
                 <div class="day-<%= item.date %>">
-                    <p class="date"><%= item.date %></p>
-                    <p class="day"><%= item.day %></p>
+                    <p class="date-day"><%= item.date %>. <%= item.day %></p>
                     <p class="daily-saved"><%= item.save %></p>      
                 </div>
 
