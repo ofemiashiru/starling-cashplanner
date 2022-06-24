@@ -156,6 +156,8 @@ h4{
 
 .calendar > div > p {
 	border:2px solid red;
+	padding: 0;
+	margin: 0;
 } 
 
 
