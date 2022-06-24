@@ -102,6 +102,21 @@
         let values = '<%= groupedOutFeed.map((item)=> item.amount) %>'
         let total = '<%= totalOut %>'
 
+        const chooseRGB = (items) => {
+            allColours = []
+            for(let i = 0; i < items; i++){
+
+                let r = Math.floor(Math.random() * 255) + 1;
+                let g = Math.floor(Math.random() * 255) + 1;
+                let b = Math.floor(Math.random() * 255) + 1;
+
+                let colour = `rgb(${r}, ${g}, ${b})`
+                allColours.push(colour)
+            }
+
+            return allColours;
+        }
+
 
         let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2))
         const data = {
@@ -126,13 +141,15 @@
             }
         };
 
+        let x = chooseRGB(labels.length)
+
         const myChart = new Chart(
             document.getElementById('myChart'),
             config  
         );
 
-        console.log()
-        console.log(total)
+        console.log(x)
+ 
     </script>
 
 <%- include("partials/footer"); -%>
