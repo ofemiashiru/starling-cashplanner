@@ -154,6 +154,10 @@ h4{
 	text-align: center;
 }
 
+.calendar > div > p {
+	border:2px solid red;
+} 
+
 
 canvas{
 	width: 350px !important;
