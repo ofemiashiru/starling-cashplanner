@@ -19,10 +19,9 @@ h4{
 	font-weight: normal;
 }
 
-.info {
-	text-align: center;
+.user-details {
+	margin: 0;
 }
-
 
 /* * {
 	box-sizing: border-box;
