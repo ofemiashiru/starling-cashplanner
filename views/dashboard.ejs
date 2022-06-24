@@ -121,9 +121,10 @@
 
         let labels = labelStr.split(",")
         let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2))
+        labels.push('savings')
 
         const data = {
-            labels: labels+'savings',
+            labels: labels,
             datasets: [{
                 label: 'Cash Breakdown',
                 data: percents,
