@@ -75,19 +75,26 @@
 
         <div class="breakdown">
 
-                <div class="item">Saving</div>
-                <div class="amount">
-                    <span><%= savingInPercent %> </span> | 
-                    <%= formatCurrency(monthlySaving) %>
-                </div>
+            <div class="item">Saving</div>
+
+            <div class="amount">
+                <span><%= savingInPercent %> </span> | 
+                <%= formatCurrency(monthlySaving) %>
+            </div>
+
         </div>
 
         <p>CALENDAR PLAN</p>
+        <div class="calendar">
+            <% dailyPlan.forEach((item)=> { %>
+                <div class="day-<%= item.date %>">
+                    <p><%= item.date %> <%= item.day %></p>
+                    <p><%= item.save %></p>      
+                </div>
 
-        <% dailyPlan.forEach((item)=> { %>
-            <p><%= item.date %> <%= item.day %></p>
-            <p><%= item.save %></p>
-        <% }) %>
+            <% }) %>
+        </div>
+
 
     </div>
 
