@@ -139,39 +139,44 @@ h4{
 .calendar {
 	display: grid;
 	grid-template-columns: auto auto auto auto auto auto auto;
-	background-color: rgba(255, 255, 255, 0.8);
-	padding: 10px;
-	margin: 0 10px;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
+	margin-bottom: 20px;
+	padding:10px;
+	border-right: 1px solid #a6a6a6;
+	border-left: 1px solid #a6a6a6;
+	border-bottom: 1px solid #a6a6a6;
 }
 
 .calendar > div {
-	/* padding: 5px; */
-	font-size: .6rem;
+	padding: 0;
+	margin: 5px;
+	height: auto;
 	text-align: center;
-	border-radius: 20px;
-	border-top: 1px solid #000;
-	border-top-left-radius: 1px solid #000;
-	border-top-right-radius: 1px solid #000;
 }
 
-.calendar > div > p {
-	padding: 10px 0;
-	margin: 0;
-	/* display: inline-block; */
-}
 
 .calendar > div > .date-day {
-	border-top-left-radius: 1px solid #000;
-	border-top-right-radius: 1px solid #000;
+	border-bottom:1px solid #c90102;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	background-color: #c90102;
+	padding: 5px;
+	color: #FFFFFF;
+	margin:0;
+	font-size: .8rem;
 } 
 
 .calendar > div > .daily-saved {
-	display: block;
-	border-left: 1px solid #000;
-	border-right: 1px solid #000;
-	border-bottom: 1px solid #000;
+	border-left:1px solid #a6a6a6;
+	border-right:1px solid #a6a6a6;
+	border-bottom: 1px solid #a6a6a6;
+	margin:0;
+	padding: 10px;
+	height: auto;
+  
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	font-size: 1.3rem;
+	font-weight: bold;
 }
 
 
