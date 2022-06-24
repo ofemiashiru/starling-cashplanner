@@ -141,6 +141,7 @@ h4{
 	grid-template-columns: auto auto auto auto auto auto auto;
 	background-color: #2196F3;
 	padding: 10px;
+	margin: 0 10px;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
 }
@@ -148,7 +149,7 @@ h4{
 .calendar > div {
 	background-color: rgba(255, 255, 255, 0.8);
 	border: 1px solid rgba(0, 0, 0, 0.8);
-	padding: 5px;
+	/* padding: 5px; */
 	font-size: .6rem;
 	text-align: center;
 }
