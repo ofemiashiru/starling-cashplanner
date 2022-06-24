@@ -122,6 +122,7 @@
         let labels = labelStr.split(",")
         let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2))
         labels.push('savings')
+        percents.push(saving)
 
         const data = {
             labels: labels,
@@ -146,7 +147,7 @@
             config  
         );
 
-        console.log(x)
+        console.log()
  
     </script>
 
