@@ -100,7 +100,7 @@
     <script>
         let labels = '<%= groupedOutFeed.map((item)=> item.spendingCategory) %>'
         let values = '<%= groupedOutFeed.map((item)=> item.amount) %>'
-        let total = '<%= totalIn %>'
+        let total = '<%= totalOut %>'
         const data = {
             labels: labels.split(","),
             datasets: [{
@@ -128,7 +128,7 @@
             config  
         );
 
-        console.log(values.split(",").map((item)=> (item/total)))
+        console.log(values.split(",").map((item)=> ((item/total)*100).toFixed(2)))
         console.log(total)
     </script>
 
