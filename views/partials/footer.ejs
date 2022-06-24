@@ -1,9 +1,57 @@
-<!-- <div class="footer-padding"></div>
-  <div class="footer">
-    <% const theYear = new Date().getFullYear()%>
-    <p>Cash Planner (2.0) <%= theYear %> </p>
-  </div> -->
-
 </body>
 
+  <script>
+    let labelStr = '<%= groupedOutFeed.map((item)=> item.spendingCategory) %>'
+    let values = '<%= groupedOutFeed.map((item)=> item.amount) %>'
+    let saving = '<%= monthlySaving %>'
+    let total = '<%= totalIn %>'
+
+
+    const chooseRGB = (items) => {
+        allColours = []
+        for(let i = 0; i < items; i++){
+
+            let r = Math.floor(Math.random() * 255) + 1;
+            let g = Math.floor(Math.random() * 255) + 1;
+            let b = Math.floor(Math.random() * 255) + 1;
+
+            let colour = `rgb(${r}, ${g}, ${b})`
+            allColours.push(colour)
+        }
+
+        return allColours;
+    }
+
+    let labels = labelStr.split(",")
+    let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2))
+    
+    labels.push(saving > 0 ? 'SAVING' : 'DEBT')
+    percents.push(((saving/total)*100).toFixed(2))
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Cash Breakdown',
+            data: percents,
+            backgroundColor: chooseRGB(labels.length),
+            hoverOffset: 5
+        }]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options:{
+            responsive: false
+        }
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config  
+    );
+
+    console.log()
+
+  </script>
 </html>
