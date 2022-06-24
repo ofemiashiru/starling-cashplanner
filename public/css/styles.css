@@ -159,7 +159,7 @@ h4{
 	display: inline-block;
 }
 
-.calendar > div > date-day {
+.calendar > div > .date-day {
 	border-top: 1px solid #000;
 	border-top-left-radius: 1px solid #000;
 	border-top-right-radius: 1px solid #000;
