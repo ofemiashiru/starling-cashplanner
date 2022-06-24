@@ -121,8 +121,9 @@
 
         let labels = labelStr.split(",")
         let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2))
-        labels.push('savings')
-        percents.push(saving)
+        
+        labels.push(saving < 0 ? 'SAVINGS' : 'DEBT')
+        percents.push((saving/total)*100)
 
         const data = {
             labels: labels,
