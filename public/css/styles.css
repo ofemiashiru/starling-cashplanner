@@ -142,9 +142,6 @@ canvas{
 	margin: 0 auto;
 }
 
-.footer-padding {
-	padding: 10px;
-}
 
 .footer {
 	position: absolute;
@@ -155,6 +152,6 @@ canvas{
 }
 
 .footer p {
-	margin-top:15px;
+	margin-top:5px;
 	font-size: 1rem;
 }
