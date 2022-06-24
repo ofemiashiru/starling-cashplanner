@@ -101,11 +101,13 @@
         let labels = '<%= groupedOutFeed.map((item)=> item.spendingCategory) %>'
         let values = '<%= groupedOutFeed.map((item)=> item.amount) %>'
         let total = '<%= totalOut %>'
+
+        let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2))
         const data = {
             labels: labels.split(","),
             datasets: [{
                 label: 'Cash Breakdown',
-                data: [],
+                data: percents,
                 backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',
@@ -128,7 +130,7 @@
             config  
         );
 
-        console.log(values.split(",").map((item)=> ((item/total)*100).toFixed(2)))
+        console.log()
         console.log(total)
     </script>
 
