@@ -119,17 +119,13 @@
 
         let labels = labelStr.split(",")
         let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2))
-        
+
         const data = {
             labels: labels,
             datasets: [{
                 label: 'Cash Breakdown',
                 data: percents,
-                backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
-                ],
+                backgroundColor: chooseRGB(labels.length),
                 hoverOffset: 4
             }]
         };
@@ -141,8 +137,6 @@
                 responsive: false
             }
         };
-
-        let x = chooseRGB(labels.length)
 
         const myChart = new Chart(
             document.getElementById('myChart'),
