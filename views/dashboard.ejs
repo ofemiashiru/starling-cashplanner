@@ -99,7 +99,7 @@
 
     <script>
         let labels = '<%= groupedOutFeed.map((item)=> item.spendingCategory) %>'
-        let values = '<%= groupedOutFeed.map((item)=> (item.amount/totalOut)*100).toFixed(2)) %>'
+        let values = '<%= groupedOutFeed.map((item)=> (item.amount/totalOut)*100)) %>'
         const data = {
             labels: labels.split(","),
             datasets: [{
