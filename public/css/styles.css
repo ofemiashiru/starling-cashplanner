@@ -179,6 +179,12 @@ h4{
 	font-weight: bold;
 }
 
+.today {
+	background-color:#a6a6a6;
+	opacity: .5;
+	border-radius: 15px;
+}
+
 
 canvas{
 	width: 350px !important;

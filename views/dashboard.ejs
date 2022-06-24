@@ -87,7 +87,7 @@
         <div class="calendar">
             <% dailyPlan.forEach((item)=> { %>
 
-                <div class="day-<%= item.date %>">
+                <div class="day-<%= item.date %> <%= %>">
                     <p class="date-day"><%= item.date %>. <%= item.day %></p>
                     <p class="daily-saved"><%= item.save %></p>      
                 </div>
@@ -153,7 +153,8 @@
             config  
         );
 
-        console.log()
+        let today = new Date().getDay()
+        console.log(today)
  
     </script>
 
