@@ -151,6 +151,8 @@ h4{
 	/* padding: 5px; */
 	font-size: .6rem;
 	text-align: center;
+	border-top-left-radius: 1px solid #000;
+	border-top-right-radius: 1px solid #000;
 }
 
 .calendar > div > p {
@@ -160,7 +162,6 @@ h4{
 }
 
 .calendar > div > .date-day {
-	border-top: 1px solid #000;
 	border-top-left-radius: 1px solid #000;
 	border-top-right-radius: 1px solid #000;
 } 
