@@ -158,7 +158,13 @@ h4{
 	padding: 0;
 	margin: 0;
 	display: inline-block;
-} 
+}
+
+.calendar > div > .daily-saved {
+	padding: 0;
+	margin: 0;
+	display: block;
+}
 
 
 canvas{
