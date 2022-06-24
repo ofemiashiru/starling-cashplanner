@@ -102,7 +102,8 @@
         let values = '<%= groupedOutFeed.map((item)=> item.amount) %>'
         let total = '<%= totalOut %>'
 
-        let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2))
+
+        let percents = values.split(",").map((item)=> ((item/total)*100).toFixed(2) + '%')
         const data = {
             labels: labels.split(","),
             datasets: [{
