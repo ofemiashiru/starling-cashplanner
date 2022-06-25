@@ -206,3 +206,15 @@ canvas{
 	margin-top:5px;
 	font-size: 1rem;
 }
+
+
+@media only screen and (max-width: 768px) {
+	/* For mobile phones: */
+
+	.calendar {
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+	}
+
+
+}
