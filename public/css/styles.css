@@ -224,5 +224,9 @@ canvas{
 		grid-template-columns: auto auto auto auto;
 	}
 
+	.calendar > div > .daily-saved {
+		font-size: 1rem;
+		
+	}
 
 }
