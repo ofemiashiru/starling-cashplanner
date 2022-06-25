@@ -225,11 +225,13 @@ canvas{
 
 	.calendar > div > .date-day {
 		font-size: .4rem;
+		transition: 4ms;
 	}
 
 	.calendar > div > .daily-saved {
 		font-size: .7rem;
 		padding: 5px;
+		transition: 4ms;
 	}
 
 }
