@@ -13,11 +13,19 @@
         </h3>
 
         <form action="/dashboard" method="post">
-            <label for="cars">Year:</label>
-            <select name="year" id="cars">
+            <label for="years">Year:</label>
+            <select name="years" id="years">
                 <option value="2021">2021</option>
                 <option value="2022" selected="selected">2022</option>
-              </select>
+            </select>
+
+            <label for="months">Month:</label>
+            <select name="months" id="months">
+                <option value="May">May</option>
+                <option value="June" selected="selected">June</option>
+            </select>
+
+            <input type="submit" value="submit" />
         </form>
         <a href="/auth/logout">Log Out</a>
 
