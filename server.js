@@ -281,7 +281,7 @@ app.route('/dashboard')
                     identity: identity, accountHolder: accountHolder, displayBalance:displayBalance,
                     groupedInFeed:groupedInFeed, groupedOutFeed:groupedOutFeed, 
                     totalIn:totalIn, totalOut:totalOut, monthlySaving:monthlySaving,
-                    dailyPlan:dailyPlan, savingInPercent:savingInPercent, formatCurrency:formatCurrency
+                    dailyPlan:dailyPlan, savingInPercent:savingInPercent, formatCurrency:formatCurrency, today:now.getDate()
                 });
 
             })
