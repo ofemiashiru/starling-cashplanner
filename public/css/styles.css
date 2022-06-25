@@ -223,13 +223,12 @@ canvas{
 		font-size: 1rem;
 	}
 
-	.calendar {
-		display: grid;
-		grid-template-columns: auto auto auto auto;
+	.calendar > div > .date-day {
+		font-size: .4rem;
 	}
 
 	.calendar > div > .daily-saved {
-		font-size: 1rem;
+		font-size: .8rem;
 		
 	}
 
