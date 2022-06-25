@@ -229,7 +229,7 @@ canvas{
 
 	.calendar > div > .daily-saved {
 		font-size: .8rem;
-		
+		padding: 5px;
 	}
 
 }
