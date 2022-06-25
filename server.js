@@ -298,6 +298,10 @@ app.route('/dashboard')
         console.error(err);
     })
     
+})
+.post(isLoggedin, (req, res)=>{
+
+    res.send("Hello")
 });
 
 app.route('/dashboard/add-to-space')
