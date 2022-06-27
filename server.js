@@ -301,7 +301,10 @@ app.route('/dashboard')
 })
 .post(isLoggedin, (req, res)=>{
 
-    console.log(req.body.years);
+    const years = req.body.years
+    const months = req.body.months
+
+    console.log(years, months);
 });
 
 app.route('/dashboard/add-to-space')
