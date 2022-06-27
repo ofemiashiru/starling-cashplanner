@@ -11,8 +11,8 @@
         <h3>
             Current Balance: <%= displayBalance %>
         </h3>
-
-        <form action="/dashboard" method="post">
+        <% const today = new Date()%>
+        <form action="/dashboard" method="get">
             <label for="years">Year:</label>
             <select name="years" id="years">
                 <option value="2021">2021</option>
