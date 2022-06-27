@@ -301,7 +301,7 @@ app.route('/dashboard')
 })
 .post(isLoggedin, (req, res)=>{
 
-    console.log("Reach");
+    console.log(req.body.years);
 });
 
 app.route('/dashboard/add-to-space')
