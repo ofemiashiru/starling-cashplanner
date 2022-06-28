@@ -100,7 +100,7 @@
         
         <div class="calendar">
             <% dailyPlan.forEach((item)=> { %>
-                <div class="day-<%= item.date %> <%= item.date == today ? 'today' : '' %>">
+                <div class="day-<%= item.date %> <%= item.date == today.getDate() ? 'today' : '' %>">
                     <p class="date-day"><%= item.date %>. <%= item.day %></p>
                     <p class="daily-saved"><%= item.save %></p>      
                 </div>
