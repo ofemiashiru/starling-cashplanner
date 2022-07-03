@@ -154,6 +154,9 @@ let months;
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
 
+    years = 2022;
+    months = 5;
+
     const userInfo = req.user;
     
     const headers = setHeaders(userInfo.token_type, userInfo.access_token);
@@ -189,6 +192,9 @@ app.route('/dashboard')
 
             const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 
+        } else {
+
+            const firstOfTheMonth = new Date(years, months, 1).toISOString();
         }
        
 
