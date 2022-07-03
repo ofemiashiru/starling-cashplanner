@@ -147,6 +147,9 @@ const formatCurrency = (amount, currency='GBP')=>{
     return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency }).format(amount/100);
 }
 
+//Dates
+let years;
+let months;
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
@@ -181,7 +184,13 @@ app.route('/dashboard')
         //Dates
         const accountCreated = accounts[0].createdAt; //when the account was created
         const now = new Date();
-        const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+
+        if (years === null || months === null) {
+
+            const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+
+        }
+       
 
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
         .then((result)=>{
