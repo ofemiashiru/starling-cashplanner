@@ -188,14 +188,18 @@ app.route('/dashboard')
         const accountCreated = accounts[0].createdAt; //when the account was created
         const now = new Date();
 
-        if (years === null || months === null) {
+        const firstOfTheMonth = new Date(
+            !years ? now.getFullYear(): years, 
+            !months ? now.getMonth(): months, 1).toISOString();
 
-            const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+        // if (years === null || months === null) {
 
-        } else {
+        //     const firstOfTheMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 
-            const firstOfTheMonth = new Date(years, months, 1).toISOString();
-        }
+        // } else {
+
+        //     const firstOfTheMonth = new Date(years, months, 1).toISOString();
+        // }
        
 
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
