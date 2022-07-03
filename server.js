@@ -147,15 +147,13 @@ const formatCurrency = (amount, currency='GBP')=>{
     return new Intl.NumberFormat('en-GB', { style: 'currency', currency: currency }).format(amount/100);
 }
 
-//Dates
-let years;
-let months;
+
 
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
 
-    // years = 2022;
-    // months = 5;
+    let years = 2022;
+    let months = 6;
 
     const userInfo = req.user;
     
