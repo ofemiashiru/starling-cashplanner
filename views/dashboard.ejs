@@ -29,7 +29,7 @@
             <select name="months" id="months">
                 <% m.forEach((item, i)=>{ %>
 
-                    <option <%= firstOfTheMonth.substring(5, 7) ===  i ? selected="selected" : selected="" %> value='<%= i %>'><%= item %></option>
+                    <option <%= firstOfTheMonth.substring(5, 7) ==  i ? selected="selected" : selected="" %> value='<%= i %>'><%= item %></option>
 
                 <% }) %>
                 
