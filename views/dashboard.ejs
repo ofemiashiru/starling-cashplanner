@@ -21,9 +21,10 @@
 
             <label for="months">Month:</label>
             <select name="months" id="months">
-                <% m.forEach((item)=>{ %>
+                <% m.forEach((item, i)=>{ %>
+
                     
-                    <option value="May"><%= item %></option>
+                    <option value='<%= i %>''><%= item %></option>
 
                 <% })%>
                 
