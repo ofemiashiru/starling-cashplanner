@@ -13,10 +13,13 @@
         </h3>
         <form action="/dashboard" method="post">
             <label for="years">Year:</label>
+
             <select name="years" id="years">
+                <%= accountCreated %> <%= today.getFullYear() %>
                 <option value="2021">2021</option>
                 <option value="2022" selected="selected">2022</option>
             </select>
+
             <% const m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'] %>
 
             <label for="months">Month:</label>
