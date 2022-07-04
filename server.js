@@ -153,7 +153,7 @@ app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
 
     let years = 2022;
-    let months = 6;
+    let months = 8;
 
     const userInfo = req.user;
     
@@ -186,7 +186,7 @@ app.route('/dashboard')
         const accountCreated = accounts[0].createdAt; //when the account was created
         const now = new Date();
 
-        const firstOfTheMonth = new Date(
+        let firstOfTheMonth = new Date(
             !years ? now.getFullYear(): years, 
             !months ? now.getMonth(): months, 1).toISOString();
 
@@ -199,7 +199,7 @@ app.route('/dashboard')
         //     const firstOfTheMonth = new Date(years, months, 1).toISOString();
         // }
 
-        console.log(years, now.getMonth())
+        console.log(years, months)
        
 
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
