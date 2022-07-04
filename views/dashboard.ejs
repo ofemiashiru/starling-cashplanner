@@ -23,12 +23,12 @@
             <select name="months" id="months">
                 <% m.forEach((item, i)=>{ %>
 
-                    <option value='<%= i %>'><%= item %></option>
+                    <option <%= today.getMonth() === <%= i %> ? selected="selected" : selected="" %> value='<%= i %>'><%= item %></option>
 
                 <% }) %>
                 
             </select>
-            <%= today.getMonth() === 5 ? selected="selected" : selected="" %>
+            
             <input type="submit" value="Submit" />
         </form>
         <a href="/auth/logout">Log Out</a>
