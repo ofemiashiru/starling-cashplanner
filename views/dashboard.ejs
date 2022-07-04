@@ -16,7 +16,7 @@
             <select name="years" id="years">
                 <% let startYear = accountCreated.substring(0,4) %> 
                 
-                <% for(let i = startYear; i <= today.getFullYear(); i++ ){ %>
+                <% for(let i = 2019; i <= today.getFullYear(); i++ ){ %>
 
                     <option <%= today.getFullYear() ===  i ? selected="selected" : selected="" %> value="<%= i %>"><%= i %></option>
 
