@@ -198,6 +198,8 @@ app.route('/dashboard')
 
         //     const firstOfTheMonth = new Date(years, months, 1).toISOString();
         // }
+
+        console.log(years, months)
        
 
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
