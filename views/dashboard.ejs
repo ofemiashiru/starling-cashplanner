@@ -28,7 +28,7 @@
                 <% })%>
                 
             </select>
-            <% today.getMonth() === 6 ? <p>"True" : "No"</p> %>
+            <%= today.getMonth() === 6 ? "True" : "No" %>
             <input type="submit" value="submit" />
         </form>
         <a href="/auth/logout">Log Out</a>
