@@ -13,13 +13,12 @@
         </h3>
         <form action="/dashboard" method="post">
             <label for="years">Year:</label>
-
             <select name="years" id="years">
                 <% let startYear = accountCreated.substring(0,4) %> 
                 
                 <% for(let i = 2019; i <= today.getFullYear(); i++ ){ %>
 
-                    <option value="<%= i %>"><%= i %></option>
+                    <option <%= today.getFullYear() ===  i ? selected="selected" : selected="" %> value="<%= i %>"><%= i %></option>
 
                 <% } %>
                 
