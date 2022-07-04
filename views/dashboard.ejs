@@ -15,9 +15,9 @@
             <label for="years">Year:</label>
 
             <select name="years" id="years">
-                <% let startYear = accountCreated.substring(0,4) %> 
+                <% let startYear = accountCreated.substring(0,4)*1 %> 
                 
-                <% for(let i = startYear; i < today.getFullYear(); i++ ){ %>
+                <% for(let i = startYear; i <= today.getFullYear(); i++ ){ %>
 
                     <option value="<%= startYear %>"><%= startYear %></option>
 
