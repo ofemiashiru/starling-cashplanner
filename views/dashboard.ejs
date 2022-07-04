@@ -18,11 +18,11 @@
                 <% let startYear = accountCreated.substring(0,4)*1 %> 
                 <%= startYear %> <%= today.getFullYear() %>
 
-                <% do{ %>
+                <% do { %>
                     <option value="<%= startYear %>"><%= startYear %></option>
-                    <% startYear++ %>
+                    <%= startYear++ %>
                 <% } %>
-                <% while( startYear < today.getFullYear() )%>
+                <% while(startYear < today.getFullYear() );%>
             </select>
 
             <% const m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'] %>
