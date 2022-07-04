@@ -153,7 +153,7 @@ app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
 
     let years = 2022;
-    let months = 8;
+    let months = 7;
 
     const userInfo = req.user;
     
