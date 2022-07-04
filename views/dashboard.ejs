@@ -25,11 +25,11 @@
 
                     <option value='<%= i %>'><%= item %></option>
 
-                <% })%>
+                <% }) %>
                 
             </select>
-            <%= today.getMonth() === 6 ? "True" : "No" %>
-            <input type="submit" value="submit" />
+            <%= today.getMonth() === 6 ? selected="selected" : selected="" %>
+            <input type="submit" value="Submit" />
         </form>
         <a href="/auth/logout">Log Out</a>
 
