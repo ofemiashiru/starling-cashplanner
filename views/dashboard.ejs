@@ -17,11 +17,16 @@
                 <option value="2021">2021</option>
                 <option value="2022" selected="selected">2022</option>
             </select>
+            <% const m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'] %>
 
             <label for="months">Month:</label>
             <select name="months" id="months">
-                <option value="May">May</option>
-                <option value="June" selected="selected">June</option>
+                <% m.forEach((item)=>{ %>
+                    
+                    <option value="May"><%= item %></option>
+
+                <% })%>
+                
             </select>
 
             <input type="submit" value="submit" />
