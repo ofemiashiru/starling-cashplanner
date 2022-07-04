@@ -152,8 +152,8 @@ const formatCurrency = (amount, currency='GBP')=>{
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
 
-    let years = 2022;
-    let months = 10;
+    let years = 2019;
+    let months = 5;
 
     const userInfo = req.user;
     

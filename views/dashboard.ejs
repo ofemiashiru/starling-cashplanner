@@ -17,7 +17,7 @@
                 
                 <% for(let i = startYear; i <= today.getFullYear(); i++ ){ %>
 
-                    <option <%= today.getFullYear() ===  i ? selected="selected" : selected="" %> value="<%= i %>"><%= i %></option>
+                    <option <%= firstOfTheMonth.substring(0,4) ===  i ? selected="selected" : selected="" %> value="<%= i %>"><%= i %></option>
 
                 <% } %>
                 
