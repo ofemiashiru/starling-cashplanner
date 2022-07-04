@@ -300,7 +300,7 @@ app.route('/dashboard')
                     groupedInFeed:groupedInFeed, groupedOutFeed:groupedOutFeed, 
                     totalIn:totalIn, totalOut:totalOut, monthlySaving:monthlySaving,
                     dailyPlan:dailyPlan, savingInPercent:savingInPercent, formatCurrency:formatCurrency,
-                    accountCreated:accountCreated, today:now
+                    accountCreated:accountCreated, today:now, firstOfTheMonth:firstOfTheMonth
                 });
 
             })
