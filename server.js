@@ -152,8 +152,8 @@ const formatCurrency = (amount, currency='GBP')=>{
 app.route('/dashboard')
 .get(isLoggedin,(req, res) => {
 
-    let years = 2019;
-    let months = 11;
+    // let years = 2019;
+    // let months = 11;
 
     const userInfo = req.user;
     
@@ -186,9 +186,7 @@ app.route('/dashboard')
         const accountCreated = accounts[0].createdAt; //when the account was created
         const now = new Date();
 
-        let firstOfTheMonth = new Date(
-            years === undefined ? now.getFullYear(): years, 
-            months === undefined ? now.getMonth(): months, 1).toISOString();
+        let firstOfTheMonth = new Date( now.getFullYear(), now.getMonth(), 1).toISOString();
 
         // if (years === null || months === null) {
 
@@ -199,7 +197,7 @@ app.route('/dashboard')
         //     const firstOfTheMonth = new Date(years, months, 1).toISOString();
         // }
 
-        console.log(years, months)
+        // console.log(years, months)
         console.log(firstOfTheMonth)
        
 
