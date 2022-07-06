@@ -187,8 +187,8 @@ app.route('/dashboard')
         const now = new Date();
 
         let firstOfTheMonth = new Date(
-            !years ? now.getFullYear(): years, 
-            !months ? now.getMonth(): months, 1).toISOString();
+            years === undefined ? now.getFullYear(): years, 
+            months === undefined ? now.getMonth(): months, 1).toISOString();
 
         // if (years === null || months === null) {
 
