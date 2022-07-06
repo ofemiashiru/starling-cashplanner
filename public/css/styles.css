@@ -52,6 +52,7 @@ h4{
 
 .flex-item:hover{
 	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
 .cash-title {
@@ -194,7 +195,7 @@ h4{
 }
 
 
-canvas{
+canvas {
 	width: 350px !important;
 	height: 350px !important;
 	margin: 0 auto;
