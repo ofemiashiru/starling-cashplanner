@@ -200,6 +200,7 @@ app.route('/dashboard')
         // }
 
         console.log(years, months)
+        console.log(firstOfTheMonth)
        
 
         axios.get(`${endpointLink}/api/v2/accounts/${accountUid}/balance`, headers)
