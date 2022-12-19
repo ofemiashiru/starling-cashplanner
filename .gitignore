@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# tokens and secrets
+.env
+
 # dependencies
 /node_modules
 /.pnp
@@ -27,6 +30,3 @@ starling-api-private.key
 starling-api-public.key
 starling-rotation-private.key
 starling-rotation-public.key
-
-# tokens and secrets
-.env
