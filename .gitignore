@@ -27,3 +27,6 @@ starling-api-private.key
 starling-api-public.key
 starling-rotation-private.key
 starling-rotation-public.key
+
+# tokens and secrets
+.env
